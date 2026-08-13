@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPU Diagnostic Lab</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap');
+        body {
+            font-family: 'Prompt', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center">
+                    <img src="Logo DPU.jpg" alt="DPU Diagnostic Lab Logo" class="h-16 w-auto">
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-slate-600 hover:text-[#3b2c70] font-medium">หน้าแรก</a>
+                    <a href="#services" class="text-slate-600 hover:text-[#3b2c70] font-medium">อัตราค่าบริการ</a>
+                    <a href="https://lin.ee/TIjSJf4" target="_blank" class="bg-[#3b2c70] hover:bg-purple-900 text-white px-6 py-2.5 rounded-full font-medium transition-colors">ติดต่อเรา</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 px-4 bg-white text-center">
+        <div class="max-w-4xl mx-auto mt-10">
+            <h1 class="text-3xl md:text-5xl font-bold text-[#3b2c70] mb-4 leading-tight uppercase">
+                Empowering Precision Diagnostics <br> Through Innovation
+            </h1>
+            <h2 class="text-xl md:text-2xl text-[#3b2c70] mb-8 uppercase font-medium">
+                Redefining the future of clinical laboratory
+            </h2>
+            <p class="text-slate-500 italic mb-10 max-w-3xl mx-auto">
+                Advancing healthcare through intelligent laboratory technologies, scientific excellence, and collaborative innovation—creating a modern diagnostic ecosystem for patient care, education, and future medical research.
+            </p>
+            <a href="#services" class="inline-block bg-[#3b2c70] text-white px-8 py-3 rounded-full font-medium shadow-lg hover:bg-purple-900 transition-all">
+                ดูอัตราค่าบริการทั้งหมด
+            </a>
+        </div>
+    </section>
+
+    <!-- Expertise & Capabilities Section -->
+    <section id="expertise" class="py-20 px-4 bg-white relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-[#3b2c70] mb-4">บริการและนวัตกรรมของเรา</h2>
+                <p class="text-slate-600 text-lg">EMPOWERING PRECISION DIAGNOSTICS THROUGH INNOVATION</p>
+            </div>
+
+            <!-- Grid Layout สำหรับ 6 หมวดหมู่หลัก -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- 1. CORE CLINICAL DIAGNOSTICS -->
+                <div class="bg-[#3b2c70] text-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-2xl font-bold mb-4 uppercase">Core<br>Clinical<br>Diagnostics</h3>
+                    <ul class="space-y-3 text-sm text-purple-100 list-disc pl-4 marker:text-purple-400">
+                        <li><strong>Hematology:</strong> CBC, differential count และรายการที่ผ่านการรับรองบน Dirui BF6900</li>
+                        <li><strong>Clinical Chemistry:</strong> glucose, lipid profile, liver, kidney, metabolic chemistry และรายการบน Dirui CS240</li>
+                        <li><strong>Immunology & Infectious Disease:</strong> immunoassay, antigen, antibody และ serology ตาม Test Menu บน Dirui CM180</li>
+                        <li><strong>Urinalysis:</strong> chemical urinalysis และองค์ประกอบปัสสาวะตามขีดความสามารถของ Dirui H1600</li>
+                    </ul>
+                </div>
+
+                <!-- 2. PRECISION MEDICINE -->
+                <div class="bg-indigo-50 border border-indigo-100 text-slate-800 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-2xl font-bold mb-4 text-[#3b2c70] uppercase leading-tight">Precision<br>Medicine,<br><span class="text-lg">Epigenetics & Cellular Health</span></h3>
+                    <div class="space-y-4 text-sm">
+                        <div>
+                            <strong class="text-[#3b2c70]">Epigenetic Age Profile</strong>
+                            <ul class="list-disc pl-4 mt-1 text-slate-600">
+                                <li>ประเมินอายุชีวภาพจาก DNA Methylation</li>
+                                <li>เปรียบเทียบอายุชีวภาพกับอายุจริง</li>
+                                <li>Biomarker สำหรับการประเมินสุขภาพแบบองค์รวม และติดตามแนวโน้มเมื่อประเมินเป็นระยะ</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <strong class="text-[#3b2c70]">IntraNAD+ Profile</strong>
+                            <ul class="list-disc pl-4 mt-1 text-slate-600">
+                                <li>ประเมินระดับ NAD+ และ NADH ภายในเซลล์ (Redox & Cofactor Balance)</li>
+                                <li>Biomarker สำหรับสุขภาพเชิงลึก และติดตามโปรแกรม Healthy Aging โดยแพทย์</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. HUMAN MICROBIOME -->
+                <div class="bg-slate-100 border border-slate-200 text-slate-800 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-2xl font-bold mb-4 text-[#3b2c70] uppercase leading-tight">Human<br>Microbiome &<br>Urogenital Health</h3>
+                    <div class="space-y-4 text-sm">
+                        <div>
+                            <strong class="text-[#3b2c70]">Enteroflor</strong>
+                            <ul class="list-disc pl-4 mt-1 text-slate-600">
+                                <li>Targeted Gut Microbiome Profile</li>
+                                <li>วิเคราะห์จุลชีพในระบบทางเดินอาหาร ข้อมูลเชิงลึกเพื่อการดูแล Gut Health</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <strong class="text-[#3b2c70]">Femoflor II (Female) / Androflor (Male)</strong>
+                            <ul class="list-disc pl-4 mt-1 text-slate-600">
+                                <li>วิเคราะห์สมดุลจุลชีพในระบบสืบพันธุ์และทางเดินปัสสาวะ</li>
+                                <li>ประเมินร่วมกับอาการและการดูแลโดยแพทย์ (Reproductive Health & Fertility Support)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. ALLERGY & IMMUNOLOGY -->
+                <div class="bg-white border border-slate-200 text-slate-800 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-2xl font-bold mb-4 text-[#3b2c70] uppercase">Allergy<br>& Clinical<br>Immunology</h3>
+                    <p class="text-slate-700 font-medium mb-3">ภูมิแพ้และภูมิคุ้มกันวิทยาคลินิก</p>
+                    <ul class="space-y-2 text-sm text-slate-600 list-disc pl-4">
+                        <li>Allergen-specific IgE</li>
+                        <li>Food-specific IgG4</li>
+                        <li>Clinical Support + Exploratory</li>
+                    </ul>
+                </div>
+
+                <!-- 5. ADVANCED BIOMARKERS -->
+                <div class="bg-gradient-to-br from-[#2a1e54] to-[#3b2c70] text-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-2xl font-bold mb-4 uppercase">Advanced<br>Clinical &<br>Translational<br>Biomarkers</h3>
+                    <p class="text-purple-100 text-sm leading-relaxed mt-4 border-t border-purple-400/30 pt-4">
+                        ชีวเครื่องหมายคลินิกขั้นสูงและการแพทย์เชิงแปลผล Cytokine & Hyperinflammation Panel, Neurovascular Profile Hospital / Research / Indication-Gated
+                    </p>
+                </div>
+
+                <!-- 6. OCCUPATIONAL TOXICOLOGY -->
+                <div class="bg-purple-900 text-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-2xl font-bold mb-4 uppercase leading-tight">Occupational<br>Toxicology &<br>Exposure<br>Biomonitoring</h3>
+                    <div class="space-y-4 text-sm text-purple-100">
+                        <div>
+                            <strong class="text-white">Metals & Toxic Elements Profile</strong>
+                            <ul class="list-disc pl-4 mt-1">
+                                <li>ประเมินการสัมผัสโลหะหนักและธาตุที่ส่งผลต่อสุขภาพ (Lead, Mercury, Arsenic, Cadmium, Chromium, Nickel)</li>
+                                <li>เพิ่มรายการตรวจตาม Risk Assessment ได้</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <strong class="text-white">Organic Solvents & VOC Biomonitoring</strong>
+                            <ul class="list-disc pl-4 mt-1">
+                                <li>ประเมินการสัมผัสสารทำละลายและสารระเหย (Toluene, Styrene, Xylene)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-4 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-5xl font-bold text-[#3b2c70] mb-4">อัตราค่าบริการทางห้องปฏิบัติการ</h2>
+                <p class="text-slate-600 mb-6">รายการตรวจวิเคราะห์และราคาอ้างอิง (บาท)</p>
+
+                <!-- 🔍 ช่องค้นหา (Search Bar) -->
+                <div class="max-w-md mx-auto relative">
+                    <input type="text" id="searchInput" onkeyup="filterServices()" placeholder="ค้นหารายการตรวจ เช่น CBC, FBS..." 
+                        class="w-full px-5 py-3 pl-12 rounded-full border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#3b2c70] focus:border-transparent shadow-sm text-lg">
+                    <svg class="w-5 h-5 text-slate-400 absolute left-4 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Grid Layout สำหรับหมวดหมู่ต่างๆ -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="servicesGrid">
+
+                <!-- หมวดหมู่: โลหิตวิทยา -->
+                <div class="service-card col-span-full bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="bg-[#3b2c70] text-white py-4 px-6 text-xl text-center font-bold">
+                        การตรวจทางโลหิตวิทยา (Hematology)
+                    </div>
+                    <ul class="p-6 space-y-3 divide-y divide-slate-100">
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจความสมบูรณ์ของเม็ดเลือดแดง (Complete Blood Count : CBC)</span> <span class="font-semibold">140.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจหมู่เลือดระบบ (ABO Blood Group)</span> <span class="font-semibold">105.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจหมู่เลือดระบบ (Rh Blood Group)</span> <span class="font-semibold">105.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจชนิดและปริมาณของฮีโมโกลบิน (Hemoglobin Typing)</span> <span class="font-semibold">800.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจคัดกรองภาวะพร่องเอนไซม์ G6PD (G6PD Screening)</span> <span class="font-semibold">200.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจวัดอัตราการตกตะกอนของเม็ดเลือดแดง (Erythrocyte Sedimentation Rate : ESR)</span> <span class="font-semibold">105.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจทางหาการติดเชื้อมาลาเรีย (Malaria)</span> <span class="font-semibold">140.00</span></li>
+                    </ul>
+                </div>
+
+                <!-- หมวดหมู่: การตรวจการแข็งตัวของเลือด -->
+                 <div class="service-card col-span-full bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="bg-[#3b2c70] text-white py-4 px-6 text-xl text-center font-bold">
+                        การตรวจการแข็งตัวของเลือด (Coagulation)
+                    </div>
+                    <ul class="p-6 space-y-3 divide-y divide-slate-100">
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจการแข็งตัวของเลือด (Partial Thrombin Time : PPT or APTT)</span> <span class="font-semibold">350.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจการแข็งตัวของเลือด (Prothrombin Time PT & INR)</span> <span class="font-semibold">350.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจการแข็งตัวของเลือด (Fibrinogen)</span> <span class="font-semibold">450.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจการแข็งตัวของเลือด (D-Dimer)</span> <span class="font-semibold">650.00</span></li>
+                    </ul>
+                 </div>
+
+                <!-- การตรวจโรคเบาหวาน -->
+                <div class="service-card col-span-full bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="bg-[#3b2c70] text-white py-4 px-6 text-xl text-center font-bold">
+                        การตรวจโรคเบาหวาน (Diabetes)
+                    </div>
+                    <ul class="p-6 space-y-3 divide-y divide-slate-100">
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับน้ำตาลในเลือดขณะอดอาหาร (Fasting Blood Sugar : FBS)</span> <span class="font-semibold">105.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับน้ำตาลสะสมในเลือด (Hemoglobin A1c : HbA1c)</span> <span class="font-semibold">315.00</span></li>
+                    </ul>
+                </div>
+
+                <!-- หมวดหมู่: การตรวจการทำงานของไต -->
+                <div class="service-card col-span-full bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="bg-[#3b2c70] text-white py-4 px-6 text-xl text-center font-bold">
+                        การตรวจการทำงานของไต (Renal Function)
+                    </div>
+                    <ul class="p-6 space-y-3 divide-y divide-slate-100">
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจการทำงานของไต (Blood Urea Nitrogen : BUN)</span> <span class="font-semibold">105.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจการทำงานของไต (Creatinine & eGFR)</span> <span class="font-semibold">126.00</span></li>
+                    </ul>
+                </div> 
+
+                <!-- หมวดหมู่: การทำงานของตับ -->
+                <div class="service-card col-span-full bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="bg-[#3b2c70] text-white py-4 px-6 text-xl text-center font-bold">
+                        การตรวจการทำงานของตับ (Liver Function)
+                    </div>
+                    <ul class="p-6 space-y-3 divide-y divide-slate-100">
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจการทำงานของตับ (Aspartate Aminotransferase : AST or SGOT)</span> <span class="font-semibold">105.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจการทำงานองตับ (Alanine Transaminase : ALT or SGPT)</span> <span class="font-semibold">105.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจการทำงานของตับและถุงน้ำดี (Alkaline Phosphatase : ALP)</span> <span class="font-semibold">126.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับโปรตีนรวม (Total Protein)</span> <span class="font-semibold">126.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับโปรตีนอัลบูมิน (Albumin)</span> <span class="font-semibold">112.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับโปรตีนโกลบูลิน (Globulin)</span> <span class="font-semibold">112.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับบิลิลูบินรวม (Total Bilirubin)</span> <span class="font-semibold">126.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับบิลิลูบิน (Bilirubin)</span> <span class="font-semibold">126.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจการทำงานของตับ (Gamma-Glutamyl Transferase : GGT)</span> <span class="font-semibold">280.00</span></li>
+                    </ul>
+                </div>
+
+                <!-- หมวดหมู่: ไขมันในเลือด -->
+                <div class="service-card col-span-full bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="bg-[#3b2c70] text-white py-4 px-6 text-xl text-center font-bold">
+                        การตรวจระดับไขมันในเลือด (Lipid Profile)
+                    </div>
+                    <ul class="p-6 space-y-3 divide-y divide-slate-100">
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับไขมันคอเลสเตอรอลรวม (Total Cholesterol : TC)</span> <span class="font-semibold">126.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับไขมันไตรกลีเซอไรด์ (Triglyceride : TG)</span> <span class="font-semibold">175.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับไขมันเอสดีแอล (HDL-Cholesterol)</span> <span class="font-semibold">224.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับไขมันแอลดีแอล (LDL-Cholesterol)</span> <span class="font-semibold">210.00</span></li>
+                    </ul>
+                </div>
+
+                <!-- หมวดหมู่: การตรวโรคเก๊าท์ -->
+                 <div class="service-card col-span-full bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="bg-[#3b2c70] text-white py-4 px-6 text-xl text-center font-bold">
+                        การตรวจโรคเก๊าท์ (Gout)
+                    </div>
+                    <ul class="p-6 space-y-3 divide-y divide-slate-100">
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับกรดยูริก (Uric Acid)</span> <span class="font-semibold">126.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับโรคข้ออักเสบรูมาตอยด์​ (Rheumatoid Factor : RF)</span> <span class="font-semibold">126.00</span></li>
+                    </ul>
+                </div>
+
+                <!-- หมวดหมู่: การตรวจระดับอิเล็กโทรไลต์ -->
+                 <div class="service-card col-span-full bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="bg-[#3b2c70] text-white py-4 px-6 text-xl text-center font-bold">
+                        การตรวจระดับอิเล็กโทรไลต์ (Electrolytes)
+                    </div>
+                    <ul class="p-6 space-y-3 divide-y divide-slate-100">
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับโซเดียม (Sodium : Na)</span> <span class="font-semibold">126.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับโพแทสเซียม (Potassium : K)</span> <span class="font-semibold">126.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับคลอไรด์ (Chloride : Cl)</span> <span class="font-semibold">126.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับคาร์บอนไดออกไซด์รวม (Total Carbondioxide : tCO<sub>2</sub>)</span> <span class="font-semibold">210.00</span></li>
+                    </ul>
+                </div>
+
+                <!-- การตรวจระดับแร่ธาตุ -->
+                 <div class="service-card col-span-full bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="bg-[#3b2c70] text-white py-4 px-6 text-xl text-center font-bold">
+                        การตรวจระดับแร่ธาตุ (Minerals)
+                    </div>
+                    <ul class="p-6 space-y-3 divide-y divide-slate-100">
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับแคลเซียม (Calcium : Ca)</span> <span class="font-semibold">210.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับแมกนีเซียม (Magnesium : Mg)</span> <span class="font-semibold">245.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับฟอสฟอรัส (Phosphorus : P)</span> <span class="font-semibold">210.00</span></li>
+                    </ul>
+                </div> 
+
+                <!-- หมวดหมู่: คัดกรองมะเร็ง -->
+                <div class="service-card col-span-full bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="bg-[#3b2c70] text-white py-4 px-6 text-xl text-center font-bold">
+                        การตรวจคัดกรองมะเร็ง (Tumor Markers)
+                    </div>
+                    <ul class="p-6 space-y-3 divide-y divide-slate-100">
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">มะเร็งตับ (Alpha-Fetoprotein : AFP)</span> <span class="font-semibold">350.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">มะเร็งลำไส้ใหญ่ (Carcinoembryonic Antigen : CEA)</span> <span class="font-semibold">385.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">มะเร็งตับอ่อน (Cancer Antigen 19-9 : CA 19-9)</span> <span class="font-semibold">665.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">มะเร็งต่อมลูกหมาก (Total Postate Specific Antigen : PSA)</span> <span class="font-semibold">665.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">มะเร็งต่อมลูกหมาก (Free Postate Specific Antigen : Free PSA)</span> <span class="font-semibold">1,050.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">มะเร็งรังไข่ (Cancer Antigen 125 : CA 125)</span> <span class="font-semibold">665.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">มะเร็งเต้านม (Cancer Antigen 153 : CA 153)</span> <span class="font-semibold">665.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">มะเร็งปอด (Neuron-Specific Enolase : NSE)</span> <span class="font-semibold">840.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">มะเร็งกระเพาะอาหาร (Cancer Antigen 72-4 : CA 72-4)</span> <span class="font-semibold">665.00</span></li>
+                    </ul>
+                </div>
+
+                <!-- หมวดหมู่: ไทรอยด์ -->
+                <div class="service-card col-span-full bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="bg-[#3b2c70] text-white py-4 px-6 text-xl text-center font-bold">
+                        การทำงานของต่อมไทรอยด์ (Thyroid)
+                    </div>
+                    <ul class="p-6 space-y-3 divide-y divide-slate-100">
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจการทำงานของต่อมไทรอยด์ (Free Triiodothyronine : Free T3)</span> <span class="font-semibold">420.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจการทำงานของต่อมไทรอยด์ (Free Thysoxine : Free T4)</span> <span class="font-semibold">280.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจการทำงานของต่อมไทรอยด์ (Thyroid Stimulating Hormone : TSH)</span> <span class="font-semibold">280.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจการทำงานของต่อมไทรอยด์ (Total Triiodothyronine : Total T3)</span> <span class="font-semibold">308.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจการทำงานของต่อมไทรอยด์ (Total Thyroxine : Total T4)</span> <span class="font-semibold">280.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับแอนติบอดีต่อไทรอยด์เปอร์ออกซิเดส (Thyroid Peroxidase Antibody : Anti-TPO)</span> <span class="font-semibold">500.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับแอนติบอดีต่อไทรอยด์โกลบูลิน (Thyroglobulin Antibody : Anti-TG)</span> <span class="font-semibold">950.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับไทรอยด์โกลบูลิน (Thyroglobulin : Tg)</span> <span class="font-semibold">950.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับแอนติบอดีต่อตัวรับฮอร์โมนกระตุ้นต่อมไทรอยด์ (TSH Receptor Antibody)</span> <span class="font-semibold">1,500.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับฮอร์โมนพาราไทรอยด์ (Parathyroid Hormone : PTH)</span> <span class="font-semibold">980.00</span></li>
+                    </ul>
+                </div>
+
+                <!-- การตรวจระดับฮอร์โมนเพศ -->
+                 <div class="service-card col-span-full bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="bg-[#3b2c70] text-white py-4 px-6 text-xl text-center font-bold">
+                        การตรวจระดับฮอร์โมนเพศ (Sex Hormones)
+                    </div>
+                    <ul class="p-6 space-y-3 divide-y divide-slate-100">
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจการตั้งครรภ์ (Beta-Human Chorionic Gonadotropin : Beta-hCG)</span> <span class="font-semibold">385.00</span></li>
+                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับฮอร์โมนโปรเจสเตอโรน (Progesterone : P4)</span> <span class="font-semibold">490.00</span></li>
+                    </ul>           
+            </div>
+
+            <div class="text-center mt-12">
+                <p class="text-sm text-slate-500">* ราคาดังกล่าวเป็นอัตราค่าบริการอ้างอิง กรุณาสอบถามรายละเอียดเพิ่มเติม ณ จุดบริการ</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#3b2c70] text-white py-12 text-center">
+        <p class="mb-4 font-semibold text-lg">DPU Diagnostic Lab</p>
+        <p class="text-sm text-purple-200 mb-6">313-2 Prachachuen Road, Thung Song Hong Subdistrict, Lak Si District, Bangkok 10210, Thailand</p>
+        <a href="https://lin.ee/TIjSJf4" target="_blank" class="inline-block border border-white/50 hover:bg-white/10 text-white px-6 py-2 rounded-full transition-colors text-sm">
+            Line Official: @dpudiagnosticlab
+        </a>
+    </footer>
+
+    <!-- ⚙️ สคริปต์ระบบค้นหา -->
+    <script>
+        function filterServices() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const cards = document.querySelectorAll('.service-card');
+
+            cards.forEach(card => {
+                const items = card.querySelectorAll('.service-item');
+                let cardHasMatch = false;
+
+                items.forEach(item => {
+                    const text = item.textContent || item.innerText;
+                    if (text.toLowerCase().includes(filter)) {
+                        item.style.display = "";
+                        cardHasMatch = true;
+                    } else {
+                        item.style.display = "none";
+                    }
+                });
+
+                // ซ่อนการ์ดทั้งหมวดหมู่ถ้าไม่มีรายการใดตรงคำค้นหาเลย
+                if (cardHasMatch) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
