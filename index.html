@@ -224,13 +224,76 @@
                         การตรวจทางโลหิตวิทยา (Hematology)
                     </div>
                     <ul class="p-6 space-y-3 divide-y divide-slate-100">
-                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจความสมบูรณ์ของเม็ดเลือดแดง (Complete Blood Count : CBC)</span> <span class="font-semibold">140.00</span></li>
-                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจหมู่เลือดระบบ (ABO Blood Group)</span> <span class="font-semibold">105.00</span></li>
-                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจหมู่เลือดระบบ (Rh Blood Group)</span> <span class="font-semibold">105.00</span></li>
-                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจชนิดและปริมาณของฮีโมโกลบิน (Hemoglobin Typing)</span> <span class="font-semibold">800.00</span></li>
-                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจคัดกรองภาวะพร่องเอนไซม์ G6PD (G6PD Screening)</span> <span class="font-semibold">200.00</span></li>
-                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจวัดอัตราการตกตะกอนของเม็ดเลือดแดง (Erythrocyte Sedimentation Rate : ESR)</span> <span class="font-semibold">105.00</span></li>
-                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจทางหาการติดเชื้อมาลาเรีย (Malaria)</span> <span class="font-semibold">140.00</span></li>
+                        <li class="service-item flex items-center justify-between pt-3 pb-2 gap-4">
+                            <span class="text-lg flex-1">การตรวจความสมบูรณ์ของเม็ดเลือดแดง (Complete Blood Count : CBC)</span> 
+                            <div class="flex items-center gap-3">
+                                <span class="font-semibold text-slate-700">140.00</span>
+                                <!-- ปุ่มเพิ่มเข้าตะกร้า -->
+                                <button onclick="addToCart('การตรวจความสมบูรณ์ของเม็ดเลือดแดง (Complete Blood Count : CBC)', 140)" class="bg-purple-100 hover:bg-[#3b2c70] text-[#3b2c70] hover:text-white px-3 py-1 rounded-full text-sm font-medium transition-colors">
+                                    + เพิ่ม
+                                </button>
+                            </div>
+                        </li>
+                        <li class="service-item flex items-center justify-between pt-3 pb-2 gap-4">
+                            <span class="text-lg flex-1">การตรวจหมู่เลือดระบบ ABO Blood Group</span> 
+                            <div class="flex items-center gap-3">
+                                <span class="font-semibold text-slate-700">105.00</span>
+                                <!-- ปุ่มเพิ่มเข้าตะกร้า -->
+                                <button onclick="addToCart('การตรวจหมู่เลือดระบบ ABO Blood Group', 105)" class="bg-purple-100 hover:bg-[#3b2c70] text-[#3b2c70] hover:text-white px-3 py-1 rounded-full text-sm font-medium transition-colors">
+                                    + เพิ่ม
+                                </button>
+                            </div>
+                        </li>
+                        <li class="service-item flex items-center justify-between pt-3 pb-2 gap-4">
+                            <span class="text-lg flex-1">การตรวจระบบ Rh Blood Group</span> 
+                            <div class="flex items-center gap-3">
+                                <span class="font-semibold text-slate-700">105.00</span>
+                                <!-- ปุ่มเพิ่มเข้าตะกร้า -->
+                                <button onclick="addToCart('การตรวจระบบ Rh Blood Group', 105)" class="bg-purple-100 hover:bg-[#3b2c70] text-[#3b2c70] hover:text-white px-3 py-1 rounded-full text-sm font-medium transition-colors">
+                                    + เพิ่ม
+                                </button>
+                            </div>
+                        </li>
+                        <li class="service-item flex items-center justify-between pt-3 pb-2 gap-4">
+                            <span class="text-lg flex-1">การตรวจชนิดและปริมาณของฮีโมโกลบิน (Hemoglobin Typing)</span> 
+                            <div class="flex items-center gap-3">
+                                <span class="font-semibold text-slate-700">800.00</span>
+                                <!-- ปุ่มเพิ่มเข้าตะกร้า -->
+                                <button onclick="addToCart('การตรวจชนิดและปริมาณของฮีโมโกลบิน (Hemoglobin Typing)', 800)" class="bg-purple-100 hover:bg-[#3b2c70] text-[#3b2c70] hover:text-white px-3 py-1 rounded-full text-sm font-medium transition-colors">
+                                    + เพิ่ม
+                                </button>
+                            </div>
+                        </li>
+                        <li class="service-item flex items-center justify-between pt-3 pb-2 gap-4">
+                            <span class="text-lg flex-1">การตรวจคัดกรองภาวะพร่องเอนไซม์ G6PD (G6PD Screening)</span> 
+                            <div class="flex items-center gap-3">
+                                <span class="font-semibold text-slate-700">200.00</span>
+                                <!-- ปุ่มเพิ่มเข้าตะกร้า -->
+                                <button onclick="addToCart('การตรวจคัดกรองภาวะพร่องเอนไซม์ G6PD (G6PD Screening)', 200)" class="bg-purple-100 hover:bg-[#3b2c70] text-[#3b2c70] hover:text-white px-3 py-1 rounded-full text-sm font-medium transition-colors">
+                                    + เพิ่ม
+                                </button>
+                            </div>
+                        </li>
+                        <li class="service-item flex items-center justify-between pt-3 pb-2 gap-4">
+                            <span class="text-lg flex-1">การตรวจวัดอัตราการตกตะกอนของเม็ดเลือดแดง (Erythrocyte Sedimentation Rate : ESR)</span> 
+                            <div class="flex items-center gap-3">
+                                <span class="font-semibold text-slate-700">105.00</span>
+                                <!-- ปุ่มเพิ่มเข้าตะกร้า -->
+                                <button onclick="addToCart('การตรวจวัดอัตราการตกตะกอนของเม็ดเลือดแดง (Erythrocyte Sedimentation Rate : ESR)', 105)" class="bg-purple-100 hover:bg-[#3b2c70] text-[#3b2c70] hover:text-white px-3 py-1 rounded-full text-sm font-medium transition-colors">
+                                    + เพิ่ม
+                                </button>
+                            </div>
+                        </li>
+                        <li class="service-item flex items-center justify-between pt-3 pb-2 gap-4">
+                            <span class="text-lg flex-1">การตรวจทางหาการติดเชื้อมาลาเรีย (Malaria)</span> 
+                            <div class="flex items-center gap-3">
+                                <span class="font-semibold text-slate-700">140.00</span>
+                                <!-- ปุ่มเพิ่มเข้าตะกร้า -->
+                                <button onclick="addToCart('การตรวจทางหาการติดเชื้อมาลาเรีย (Malaria)', 140)" class="bg-purple-100 hover:bg-[#3b2c70] text-[#3b2c70] hover:text-white px-3 py-1 rounded-full text-sm font-medium transition-colors">
+                                    + เพิ่ม
+                                </button>
+                            </div>
+                        </li>
                     </ul>
                 </div>
 
@@ -240,10 +303,46 @@
                         การตรวจการแข็งตัวของเลือด (Coagulation)
                     </div>
                     <ul class="p-6 space-y-3 divide-y divide-slate-100">
-                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจการแข็งตัวของเลือด (Partial Thrombin Time : PPT or APTT)</span> <span class="font-semibold">350.00</span></li>
-                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจการแข็งตัวของเลือด (Prothrombin Time PT & INR)</span> <span class="font-semibold">350.00</span></li>
-                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจการแข็งตัวของเลือด (Fibrinogen)</span> <span class="font-semibold">450.00</span></li>
-                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจการแข็งตัวของเลือด (D-Dimer)</span> <span class="font-semibold">650.00</span></li>
+                        <li class="service-item flex items-center justify-between pt-3 pb-2 gap-4">
+                            <span class="text-lg flex-1">การตรวจการแข็งตัวของเลือด (Partial Thrombin Time : PTT or APTT)</span> 
+                            <div class="flex items-center gap-3">
+                                <span class="font-semibold text-slate-700">350.00</span>
+                                <!-- ปุ่มเพิ่มเข้าตะกร้า -->
+                                <button onclick="addToCart('การตรวจการแข็งตัวของเลือด (Partial Thrombin Time : PTT or APTT)', 350)" class="bg-purple-100 hover:bg-[#3b2c70] text-[#3b2c70] hover:text-white px-3 py-1 rounded-full text-sm font-medium transition-colors">
+                                    + เพิ่ม
+                                </button>
+                            </div>
+                        </li>
+                        <li class="service-item flex items-center justify-between pt-3 pb-2 gap-4">
+                            <span class="text-lg flex-1">การตรวจการแข็งตัวของเลือด (Prothrombin Time : PT & INR)</span> 
+                            <div class="flex items-center gap-3">
+                                <span class="font-semibold text-slate-700">350.00</span>
+                                <!-- ปุ่มเพิ่มเข้าตะกร้า -->
+                                <button onclick="addToCart('การตรวจการแข็งตัวของเลือด (Prothrombin Time : PT & INR)', 350)" class="bg-purple-100 hover:bg-[#3b2c70] text-[#3b2c70] hover:text-white px-3 py-1 rounded-full text-sm font-medium transition-colors">
+                                    + เพิ่ม
+                                </button>
+                            </div>
+                        </li>
+                        <li class="service-item flex items-center justify-between pt-3 pb-2 gap-4">
+                            <span class="text-lg flex-1">การตรวจการแข็งตัวของเลือด (Fibrinogen)</span> 
+                            <div class="flex items-center gap-3">
+                                <span class="font-semibold text-slate-700">450.00</span>
+                                <!-- ปุ่มเพิ่มเข้าตะกร้า -->
+                                <button onclick="addToCart('การตรวจการแข็งตัวของเลือด (Fibrinogen)', 450)" class="bg-purple-100 hover:bg-[#3b2c70] text-[#3b2c70] hover:text-white px-3 py-1 rounded-full text-sm font-medium transition-colors">
+                                    + เพิ่ม
+                                </button>
+                            </div>
+                        </li>
+                        <li class="service-item flex items-center justify-between pt-3 pb-2 gap-4">
+                            <span class="text-lg flex-1">การตรวจการแข็งตัวของเลือด (D-Dimer)</span> 
+                            <div class="flex items-center gap-3">
+                                <span class="font-semibold text-slate-700">650.00</span>
+                                <!-- ปุ่มเพิ่มเข้าตะกร้า -->
+                                <button onclick="addToCart('การตรวจการแข็งตัวของเลือด (D-Dimer)', 650)" class="bg-purple-100 hover:bg-[#3b2c70] text-[#3b2c70] hover:text-white px-3 py-1 rounded-full text-sm font-medium transition-colors">
+                                    + เพิ่ม
+                                </button>
+                            </div>
+                        </li>
                     </ul>
                  </div>
 
@@ -253,8 +352,26 @@
                         การตรวจโรคเบาหวาน (Diabetes)
                     </div>
                     <ul class="p-6 space-y-3 divide-y divide-slate-100">
-                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับน้ำตาลในเลือดขณะอดอาหาร (Fasting Blood Sugar : FBS)</span> <span class="font-semibold">105.00</span></li>
-                        <li class="service-item flex justify-between pt-2"><span class="text-lg">การตรวจระดับน้ำตาลสะสมในเลือด (Hemoglobin A1c : HbA1c)</span> <span class="font-semibold">315.00</span></li>
+                        <li class="service-item flex items-center justify-between pt-3 pb-2 gap-4">
+                            <span class="text-base flex-1">การตรวจระดับน้ำตาลในเลือดขณะอดอาหาร (Fasting Blood Sugar : FBS)</span> 
+                            <div class="flex items-center gap-3">
+                                <span class="font-semibold text-slate-700">105.00</span>
+                                <!-- ปุ่มเพิ่มเข้าตะกร้า -->
+                                <button onclick="addToCart('Fasting Blood Sugar (FBS)', 105)" class="bg-purple-100 hover:bg-[#3b2c70] text-[#3b2c70] hover:text-white px-3 py-1 rounded-full text-sm font-medium transition-colors">
+                                    + เพิ่ม
+                                </button>
+                            </div>
+                        </li>                        
+                        <li class="service-item flex items-center justify-between pt-3 pb-2 gap-4">
+                            <span class="text-base flex-1">การตรวจระดับน้ำตาลในเลือด (Hemoglobin A1c : HbA1c)</span> 
+                            <div class="flex items-center gap-3">
+                                <span class="font-semibold text-slate-700">315.00</span>
+                                <!-- ปุ่มเพิ่มเข้าตะกร้า -->
+                                <button onclick="addToCart('การตรวจระดับน้ำตาลในเลือด (Hemoglobin A1c : HbA1c)', 315)" class="bg-purple-100 hover:bg-[#3b2c70] text-[#3b2c70] hover:text-white px-3 py-1 rounded-full text-sm font-medium transition-colors">
+                                    + เพิ่ม
+                                </button>
+                            </div>
+                        </li>                    
                     </ul>
                 </div>
 
@@ -418,6 +535,51 @@
         </a>
     </footer>
 
+<!-- 🛒 ปุ่มตะกร้าแบบลอย (Floating Cart Button) -->
+<button onclick="toggleCart()" class="fixed bottom-6 right-6 bg-[#3b2c70] text-white p-4 rounded-full shadow-2xl hover:bg-purple-900 transition-all z-40 border-2 border-white">
+    <div class="relative">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+        <!-- ตัวเลขแจ้งเตือนจำนวนของในตะกร้า -->
+        <span id="cartCount" class="absolute -top-3 -right-3 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full shadow">0</span>
+    </div>
+</button>
+
+<!-- 📦 แถบตะกร้าด้านข้าง (Cart Drawer) -->
+<div id="cartDrawer" class="fixed inset-y-0 right-0 w-[90%] max-w-md bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+    <!-- หัวตะกร้า -->
+    <div class="p-6 bg-[#3b2c70] text-white flex justify-between items-center shadow-md">
+        <h3 class="text-xl font-bold flex items-center gap-2">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4z"></path></svg>
+            ตะกร้ารายการตรวจ
+        </h3>
+        <button onclick="toggleCart()" class="text-white hover:text-purple-200">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+    </div>
+    
+    <!-- รายการที่เลือก (จะถูกแทรกตรงนี้ผ่าน JavaScript) -->
+    <div class="p-6 flex-1 overflow-y-auto bg-slate-50">
+        <ul id="cartItems" class="space-y-3">
+            <li class="text-slate-400 text-center py-10">ยังไม่มีรายการในตะกร้า<br><span class="text-sm">คลิก "เพิ่ม" ที่รายการตรวจเพื่อประเมินราคา</span></li>
+        </ul>
+    </div>
+    
+    <!-- ส่วนสรุปยอดและปุ่มส่ง Line -->
+    <div class="p-6 bg-white border-t border-slate-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+        <div class="flex justify-between items-end mb-4">
+            <span class="font-bold text-slate-600">รวมราคาอ้างอิง:</span>
+            <span class="text-3xl font-bold text-[#3b2c70]"><span id="cartTotal">0</span> ฿</span>
+        </div>
+        <button onclick="sendToLine()" class="w-full bg-[#06C755] hover:bg-[#05b34c] text-white py-3.5 rounded-xl font-bold transition-colors flex justify-center items-center gap-2 shadow-lg">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.12.295.079.757.037 1.08l-.134.806c-.035.21-.16.792.697.359.856-.432 4.62-2.721 6.347-4.686 1.189-1.353 1.96-2.937 1.96-4.59v-.009c0-3.169-2.694-6.159-6-6.159zm-13.824 4.542h-3.411c-.347 0-.628-.281-.628-.628V7.558c0-.347.281-.628.628-.628.347 0 .628.281.628.628v6.031h2.783c.347 0 .628.281.628.628 0 .347-.281.628-.628.628zm2.463-.628c0 .347-.281.628-.628.628-.347 0-.628-.281-.628-.628V7.558c0-.347.281-.628.628-.628.347 0 .628.281.628.628v6.66zm6.852-1.921c0 .347-.281.628-.628.628h-3.344c-.347 0-.628-.281-.628-.628V7.558c0-.347.281-.628.628-.628h3.344c.347 0 .628.281.628.628 0 .347-.281.628-.628.628h-2.716v2.102h2.716c.347 0 .628.281.628.628 0 .347-.281.628-.628.628h-2.716v2.193h2.716c.347 0 .628.281.628.628z"/></svg>
+            สอบถามรายการนี้ทาง Line
+        </button>
+    </div>
+</div>
+
+<!-- ฉากหลังตะกร้า -->
+<div id="cartOverlay" onclick="toggleCart()" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity"></div>
+
 <!-- ⚙️ สคริปต์ระบบค้นหา และ ระบบเมนูด้านข้าง -->
 <script>
     // 1. ฟังก์ชันค้นหารายการตรวจ
@@ -449,7 +611,7 @@
         });
     }
 
-    // 2. ฟังก์ชันเปิด-ปิดแถบเมนูด้านข้าง (ขั้นตอนที่ 3)
+    // 2. ฟังก์ชันเปิด-ปิดแถบเมนูด้านข้าง
     function toggleMobileNav() {
         const drawer = document.getElementById('mobileDrawer');
         const overlay = document.getElementById('drawerOverlay');
@@ -457,6 +619,91 @@
         // สลับเปิด-ปิดแถบข้าง และฉากหลังดำ
         drawer.classList.toggle('translate-x-full');
         overlay.classList.toggle('hidden');
+    }
+
+    // ==========================================
+    // 3. ระบบตะกร้า (Shopping Cart System) ที่เพิ่มเข้ามาใหม่
+    // ==========================================
+    let cart = []; // สร้างตัวแปรอาเรย์เก็บรายการตรวจ
+
+    function toggleCart() {
+        document.getElementById('cartDrawer').classList.toggle('translate-x-full');
+        document.getElementById('cartOverlay').classList.toggle('hidden');
+    }
+
+    // ฟังก์ชันเมื่อกดปุ่ม "เพิ่ม"
+    function addToCart(name, price) {
+        cart.push({ name, price }); // ดันข้อมูลลงตะกร้า
+        updateCartUI();
+        
+        // ทำให้ตัวเลขตะกร้ากระเด้งเตือนว่าของเข้าแล้ว
+        const badge = document.getElementById('cartCount');
+        if(badge) {
+            badge.classList.add('animate-ping');
+            setTimeout(() => badge.classList.remove('animate-ping'), 300);
+        }
+        
+        // เปิดตะกร้าให้ดูทันทีที่กดเพิ่ม (ลบบรรทัดนี้ออกได้ถ้าไม่อยากให้เด้งเปิดเอง)
+        const drawer = document.getElementById('cartDrawer');
+        if(drawer && drawer.classList.contains('translate-x-full')){
+            toggleCart();
+        }
+    }
+
+    // ฟังก์ชันลบรายการออก
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartUI();
+    }
+
+    // ฟังก์ชันอัปเดตหน้าตาตะกร้าและคำนวณราคา
+    function updateCartUI() {
+        const list = document.getElementById('cartItems');
+        const totalEl = document.getElementById('cartTotal');
+        const countEl = document.getElementById('cartCount');
+        
+        if(countEl) countEl.innerText = cart.length;
+
+        if (cart.length === 0) {
+            if(list) list.innerHTML = '<li class="text-slate-400 text-center py-10">ยังไม่มีรายการในตะกร้า<br><span class="text-sm">คลิก "เพิ่ม" ที่รายการตรวจเพื่อประเมินราคา</span></li>';
+            if(totalEl) totalEl.innerText = '0';
+            return;
+        }
+
+        let html = '';
+        let total = 0;
+
+        cart.forEach((item, index) => {
+            total += item.price;
+            html += `
+            <li class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex justify-between items-center gap-2">
+                <div class="flex-1">
+                    <p class="text-sm font-medium text-slate-700 leading-tight">${item.name}</p>
+                    <p class="text-[#3b2c70] font-bold mt-1">${item.price.toFixed(2)} ฿</p>
+                </div>
+                <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-600 bg-red-50 hover:bg-red-100 p-2 rounded-full transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                </button>
+            </li>`;
+        });
+
+        if(list) list.innerHTML = html;
+        if(totalEl) totalEl.innerText = total.toFixed(2);
+    }
+
+    // ฟังก์ชันส่งรายการไปที่ Line Official
+    function sendToLine() {
+        if (cart.length === 0) return alert('กรุณาเลือกรายการตรวจก่อนครับ');
+        
+        let text = "สวัสดีครับ สนใจประเมินราคารายการตรวจดังนี้ครับ:\n\n";
+        cart.forEach((item, index) => {
+            text += `${index + 1}. ${item.name} = ${item.price} บ.\n`;
+        });
+        text += `\nยอดรวมอ้างอิง: ${document.getElementById('cartTotal').innerText} บาท`;
+        
+        // ส่งข้อความไปหน้าแชท Line (@dpudiagnosticlab)
+        const lineUrl = `https://line.me/R/ti/p/@dpudiagnosticlab?text=${encodeURIComponent(text)}`;
+        window.open(lineUrl, '_blank');
     }
 </script>
 </body>
