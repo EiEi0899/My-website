@@ -544,7 +544,7 @@
                             <div class="flex items-center gap-3">
                                 <span class="font-semibold text-slate-700">210.00</span>
                                 <!-- ปุ่มเพิ่มเข้าตะกร้า -->
-                                <button onclick="addToCart('การตรวจระดับไขมันแอลdีแอล (LDL-C)', 210)" class="bg-purple-100 hover:bg-[#3b2c70] text-[#3b2c70] hover:text-white px-3 py-1 rounded-full text-sm font-medium transition-colors">
+                                <button onclick="addToCart('การตรวจระดับไขมันแอลดีแอล (LDL-C)', 210)" class="bg-purple-100 hover:bg-[#3b2c70] text-[#3b2c70] hover:text-white px-3 py-1 rounded-full text-sm font-medium transition-colors">
                                     + เพิ่ม
                                 </button>
                             </div>
@@ -1853,10 +1853,12 @@
             <p class="text-sm text-slate-500 mb-6">ข้อมูลของคุณถูกบันทึกลงระบบเรียบร้อยครับ</p>
         
             <!-- ปุ่มตกลง -->
-            <button onclick="closeSuccessModal()" class="w-full px-4 py-3 bg-[#3b2c70] hover:bg-purple-900 text-white font-bold rounded-xl transition-colors shadow-lg">
+            <div class="flex justify-center">
+                <button onclick="closeSuccessModal()" class="w-full px-4 py-3 bg-[#3b2c70] hover:bg-purple-900 text-white font-bold rounded-xl transition-colors shadow-lg">
                 ตกลง
-            </button>
-        
+                </button>
+            </div>
+
         </div>
     </div>
     <!-- 📅 Modal หน้าต่างนัดหมายจองคิว -->
