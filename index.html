@@ -1209,14 +1209,24 @@
     }
     
     // 🔴 ฟังก์ชันใหม่: ลบรายการทั้งหมดในตะกร้า
+    // 1. ฟังก์ชันเปิดกล่องป๊อปอัป
     function clearCart() {
-        if (cart.length === 0) return; // ถ้าตะกร้าว่างอยู่แล้วไม่ต้องทำอะไร
+        if (cart.length === 0) return; 
         
-        // แจ้งเตือนยืนยันก่อนลบ เพื่อป้องกันลูกค้าเผลอกดโดน
-        if (confirm('คุณต้องการลบรายการตรวจทั้งหมดในตะกร้าใช่หรือไม่?')) {
-            cart = []; // ล้างอาเรย์ให้ว่างเปล่า
-            updateCartUI(); // อัปเดตหน้าจอ
-        }
+        // เรียกแสดงกล่อง Modal แทนการใช้ confirm()
+        document.getElementById('customConfirmModal').classList.remove('hidden');
+    }
+
+    // 2. ฟังก์ชันปิดกล่องป๊อปอัป (กรณีกดยกเลิก)
+    function closeConfirmModal() {
+        document.getElementById('customConfirmModal').classList.add('hidden');
+    }
+
+    // 3. ฟังก์ชันทำการลบของจริงๆ (เมื่อกดปุ่มตกลง)
+    function executeClearCart() {
+        cart = []; // ล้างข้อมูลใน Array
+        updateCartUI(); // อัปเดตหน้าจอให้ปุ่มหายไป
+        closeConfirmModal(); // ปิดกล่องป๊อปอัป
     }
 
     // ฟังก์ชันอัปเดตหน้าตาตะกร้า
@@ -1305,5 +1315,31 @@
         if(totalEl) totalEl.innerText = total.toFixed(2);
     }
 </script>
+    <!-- 🔴 กล่องป๊อปอัปยืนยันการลบทั้งหมด (Custom Modal) -->
+    <div id="customConfirmModal" class="fixed inset-0 bg-slate-900/40 z-50 hidden flex items-center justify-center backdrop-blur-sm px-4">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-sm shadow-xl transform transition-all">
+        
+         <!-- ไอคอนแจ้งเตือน -->
+            <div class="flex items-center justify-center w-12 h-12 mx-auto bg-red-100 rounded-full mb-4">
+                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+            </div>
+        
+            <h3 class="text-xl font-bold text-center text-[#3b2c70] mb-2">ยืนยันการลบ?</h3>
+            <p class="text-sm text-center text-slate-500 mb-6">คุณต้องการลบรายการตรวจทั้งหมดในตะกร้าใช่หรือไม่?</p>
+        
+            <!-- ปุ่มกดยืนยัน / ยกเลิก -->
+            <div class="flex gap-3">
+                <button onclick="closeConfirmModal()" class="flex-1 px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-colors">
+                ยกเลิก
+                </button>
+                <button onclick="executeClearCart()" class="flex-1 px-4 py-3 bg-red-500 hover:bg-red-600 text-white font-bold rounded-xl transition-colors shadow-lg shadow-red-500/30">
+                ตกลง
+                </button>
+            </div>
+        
+        </div>
+    </div>
 </body>
 </html>
