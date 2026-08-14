@@ -1765,49 +1765,63 @@
         if (modal) modal.classList.remove('hidden');
     }
 
-    // 🟢 ปิด Modal นัดหมาย
-    function closeBookingModal() {
-        const modal = document.getElementById('bookingModal');
-        if (modal) modal.classList.add('hidden');
+    // ฟังก์ชันปิดหน้าต่างสำเร็จ
+    function closeSuccessModal() {
+        const modal = document.getElementById('successModal');
+        if (modal) {
+            modal.classList.add('hidden');
+        }
     }
 
-    // 🟢 ฟังก์ชันส่งข้อมูลเข้า Google Sheets
+    // ฟังก์ชันส่งข้อมูลเข้า Google Sheets
     function submitBooking(event) {
         event.preventDefault(); // ป้องกันหน้าเว็บรีเฟรช
     
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzXLtnF5jX8fo1LJX04i-MQN79KBm5ldj8bv7S3UL3I6DXrUGXm1Z-SFY29LXdWsixtpQ/exec';
 
         const bookingData = {
-            name: document.getElementById('b_name').value,
-            phone: document.getElementById('b_phone').value,
-            lineId: document.getElementById('b_line').value,
-            date: document.getElementById('b_date').value,
-            time: document.getElementById('b_time').value,
-            items: document.getElementById('b_items').value
+            name: document.getElementById('b_name') ? document.getElementById('b_name').value : '',
+            phone: document.getElementById('b_phone') ? document.getElementById('b_phone').value : '',
+            lineId: document.getElementById('b_line') ? document.getElementById('b_line').value : '',
+            date: document.getElementById('b_date') ? document.getElementById('b_date').value : '',
+            time: document.getElementById('b_time') ? document.getElementById('b_time').value : '',
+            items: document.getElementById('b_items') ? document.getElementById('b_items').value : ''
         };
 
         const submitBtn = event.target.querySelector('button[type="submit"]');
         const originalBtnText = submitBtn.innerHTML;
+        
         submitBtn.innerText = 'กำลังส่งข้อมูล...';
         submitBtn.disabled = true;
 
         fetch(scriptURL, {
             method: 'POST',
             mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
+            // 🔥 จุดแก้ที่ 1: เปลี่ยนเป็น text/plain ป้องกันมือถือ/Vercel บล็อกข้อมูล
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
             body: JSON.stringify(bookingData)
         })
         .then(() => {
-            alert('นัดหมายเรียบร้อยแล้ว! ข้อมูลถูกบันทึกลงระบบเรียบร้อย');
-            closeBookingModal(); // ปิดหน้าต่างนัดหมาย
-            document.getElementById('bookingForm').reset(); // ล้างข้อมูลในฟอร์ม
+            // 🔥 จุดแก้ที่ 2: ป้องกันโค้ดพัง เช็คก่อนว่ามีฟังก์ชัน closeBookingModal ให้เรียกใช้ไหม
+            if (typeof closeBookingModal === 'function') {
+                closeBookingModal(); 
+            }
+            
+            const form = document.getElementById('bookingForm');
+            if(form) form.reset();
+            
+            // 🌟 เปิดหน้าต่าง Custom Modal แจ้งเตือนสำเร็จ
+            const successModal = document.getElementById('successModal');
+            if(successModal) {
+                successModal.classList.remove('hidden');
+            }
         })
         .catch(error => {
-            alert('เกิดข้อผิดพลาดในการบันทึกข้อมูล กรุณาลองใหม่อีกครั้ง');
-            console.error('Error!', error.message);
+            alert('เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง');
+            console.error('Error:', error);
         })
         .finally(() => {
-            submitBtn.innerHTML = originalBtnText;
+            submitBtn.innerHTML = originalBtnText; 
             submitBtn.disabled = false;
         });
     }
