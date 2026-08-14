@@ -1407,7 +1407,7 @@
         <p class="mb-4 font-semibold text-lg">DPU Diagnostic Lab</p>
         <p class="text-sm text-purple-200 mb-6">313-2 Prachachuen Road, Thung Song Hong Subdistrict, Lak Si District, Bangkok 10210, Thailand</p>
         <a href="https://lin.ee/TIjSJf4" target="_blank" class="inline-block border border-white/50 hover:bg-white/10 text-white px-6 py-2 rounded-full transition-colors text-sm">
-            Line Official: @dpudiagnosticlab
+            LINE Official: @dpudiagnosticlab
         </a>
     </footer>
 
@@ -1516,7 +1516,7 @@
         overlay.classList.toggle('hidden');
     }
 
-// ==========================================
+    // ==========================================
     // 3. ระบบตะกร้า (อัปเกรด: ปุ่มบวก/ลบ สไตล์แอปเดลิเวอรี่)
     // ==========================================
     let cart = []; // เก็บเป็น { name, price, qty }
@@ -1664,6 +1664,26 @@
 
         if(list) list.innerHTML = html;
         if(totalEl) totalEl.innerText = total.toFixed(2);
+    }
+    // ฟังก์ชันส่งรายการไปที่ Line Official
+    function sendToLine() {
+        if (cart.length === 0) return alert('กรุณาเลือกรายการตรวจก่อนครับ');
+        
+        let text = "สวัสดีครับ สนใจประเมินราคารายการตรวจดังนี้ครับ:\n\n";
+        let totalItemsCount = 0;
+        
+        cart.forEach((item, index) => {
+            totalItemsCount += item.qty;
+            // 🌟 เพิ่มแสดงจำนวน (x2) ในข้อความ Line ด้วย
+            text += `${index + 1}. ${item.name} (x${item.qty}) = ${item.price * item.qty} บ.\n`;
+        });
+        
+        text += `\nจำนวนรวม: ${totalItemsCount} รายการ`;
+        text += `\nยอดรวมอ้างอิง: ${document.getElementById('cartTotal').innerText} บาท`;
+        
+        // ส่งข้อความไปหน้าแชท Line (@dpudiagnosticlab)
+        const lineUrl = `https://line.me/R/ti/p/@dpudiagnosticlab?text=${encodeURIComponent(text)}`;
+        window.open(lineUrl, '_blank');
     }
 </script>
     <!-- 🔴 กล่องป๊อปอัปยืนยันการลบทั้งหมด (Custom Modal) -->
