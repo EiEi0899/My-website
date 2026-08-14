@@ -1668,21 +1668,20 @@
     // ฟังก์ชันส่งรายการไปที่ Line Official
     function sendToLine() {
         if (cart.length === 0) return alert('กรุณาเลือกรายการตรวจก่อนครับ');
-        
+    
         let text = "สวัสดีครับ สนใจประเมินราคารายการตรวจดังนี้ครับ:\n\n";
         let totalItemsCount = 0;
-        
+    
         cart.forEach((item, index) => {
             totalItemsCount += item.qty;
-            // 🌟 เพิ่มแสดงจำนวน (x2) ในข้อความ Line ด้วย
             text += `${index + 1}. ${item.name} (x${item.qty}) = ${item.price * item.qty} บ.\n`;
         });
-        
+    
         text += `\nจำนวนรวม: ${totalItemsCount} รายการ`;
         text += `\nยอดรวมอ้างอิง: ${document.getElementById('cartTotal').innerText} บาท`;
-        
-        // ส่งข้อความไปหน้าแชท Line (@dpudiagnosticlab)
-        const lineUrl = `https://line.me/R/ti/p/@dpudiagnosticlab?text=${encodeURIComponent(text)}`;
+    
+        // เปลี่ยนมาใช้รูปแบบ oaMessage ข้อความถึงจะส่งเข้าไปที่หน้าแชทอัตโนมัติ
+        const lineUrl = `https://line.me/R/oaMessage/@dpudiagnosticlab/?${encodeURIComponent(text)}`;
         window.open(lineUrl, '_blank');
     }
 </script>
