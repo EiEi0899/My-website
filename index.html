@@ -1448,15 +1448,23 @@
     
     <!-- ส่วนสรุปยอดและปุ่มส่ง Line -->
     <div id="cartFooter" class="hidden p-6 bg-white border-t border-slate-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
-        <div class="flex justify-between items-end mb-4">
-            <span class="font-bold text-slate-600">รวมราคาอ้างอิง:</span>
-            <span class="text-3xl font-bold text-[#3b2c70]"><span id="cartTotal">0</span> ฿</span>
-        </div>
-        
-        <!-- 🟢 ปุ่มส่ง Line (แบบไม่มีไอคอน) -->
-        <button onclick="sendToLine()" class="w-full bg-[#06C755] hover:bg-[#05b34c] text-white py-3.5 rounded-xl font-bold text-lg transition-colors flex justify-center items-center shadow-lg">
-            สอบถามข้อมูลเพิ่มเติมทาง LINE
-        </button>
+    <div class="flex justify-between items-end mb-4">
+        <span class="font-bold text-slate-600">รวมราคาอ้างอิง:</span>
+        <span class="text-3xl font-bold text-[#3b2c70]"><span id="cartTotal">0</span> ฿</span>
+    </div>
+    
+    <!-- 📅 ปุ่มจองคิวนัดหมาย (เพิ่มใหม่) -->
+    <button onclick="openBookingModal()" class="w-full bg-[#3b2c70] text-white py-3.5 rounded-xl font-bold text-base hover:bg-purple-900 transition-colors shadow-lg flex items-center justify-center gap-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+        </svg>
+        นัดหมายจองคิว
+    </button>
+
+    <!-- 🟢 ปุ่มส่ง Line (แบบไม่มีไอคอน) -->
+    <button onclick="sendToLine()" class="w-full bg-[#06C755] hover:bg-[#05b34c] text-white py-3.5 rounded-xl font-bold text-lg transition-colors flex justify-center items-center shadow-lg mt-2">
+        สอบถามข้อมูลเพิ่มเติมทาง LINE
+    </button>
     </div>
 </div>
 
@@ -1684,6 +1692,72 @@
         const lineUrl = `https://line.me/R/oaMessage/@dpudiagnosticlab/?${encodeURIComponent(text)}`;
         window.open(lineUrl, '_blank');
     }
+    // ==========================================
+    // 5. ระบบหน้าต่างจองคิวนัดหมาย (Modal)
+    // ==========================================
+
+    // 🟢 เปิด Modal + ดึงรายการจากตะกร้ามาหยอดใส่อัตโนมัติ
+    function openBookingModal() {
+        const modal = document.getElementById('bookingModal');
+        const bItems = document.getElementById('b_items');
+        
+        // ถ้ามีสินค้าในตะกร้า ให้สรุปรายการมาใส่ช่อง b_items
+        if (cart.length > 0) {
+            let itemList = cart.map((item, i) => `${i + 1}. ${item.name} (x${item.qty})`).join('\n');
+            if (bItems) bItems.value = itemList;
+        } else {
+            if (bItems) bItems.value = "ปรึกษา/นัดหมายทั่วไป (ยังไม่ได้เลือกรายการตรวจ)";
+        }
+
+        if (modal) modal.classList.remove('hidden');
+    }
+
+    // 🟢 ปิด Modal นัดหมาย
+    function closeBookingModal() {
+        const modal = document.getElementById('bookingModal');
+        if (modal) modal.classList.add('hidden');
+    }
+
+    // 🟢 ฟังก์ชันส่งข้อมูลเข้า Google Sheets
+    function submitBooking(event) {
+        event.preventDefault(); // ป้องกันหน้าเว็บรีเฟรช
+    
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzXLtnF5jX8fo1LJX04i-MQN79KBm5ldj8bv7S3UL3I6DXrUGXm1Z-SFY29LXdWsixtpQ/exec';
+
+        const bookingData = {
+            name: document.getElementById('b_name').value,
+            phone: document.getElementById('b_phone').value,
+            lineId: document.getElementById('b_line').value,
+            date: document.getElementById('b_date').value,
+            time: document.getElementById('b_time').value,
+            items: document.getElementById('b_items').value
+        };
+
+        const submitBtn = event.target.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.innerText = 'กำลังส่งข้อมูล...';
+        submitBtn.disabled = true;
+
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(bookingData)
+        })
+        .then(() => {
+            alert('นัดหมายเรียบร้อยแล้ว! ข้อมูลถูกบันทึกลงระบบเรียบร้อยครับ');
+            closeBookingModal(); // ปิดหน้าต่างนัดหมาย
+            document.getElementById('bookingForm').reset(); // ล้างข้อมูลในฟอร์ม
+        })
+        .catch(error => {
+            alert('เกิดข้อผิดพลาดในการบันทึกข้อมูล กรุณาลองใหม่อีกครั้ง');
+            console.error('Error!', error.message);
+        })
+        .finally(() => {
+            submitBtn.innerHTML = originalBtnText;
+            submitBtn.disabled = false;
+        });
+    }
 </script>
     <!-- 🔴 กล่องป๊อปอัปยืนยันการลบทั้งหมด (Custom Modal) -->
     <div id="customConfirmModal" class="fixed inset-0 bg-slate-900/40 z-50 hidden flex items-center justify-center backdrop-blur-sm px-4">
@@ -1711,5 +1785,63 @@
         
         </div>
     </div>
+    <!-- 📅 Modal หน้าต่างนัดหมายจองคิว -->
+<div id="bookingModal" class="fixed inset-0 bg-black bg-opacity-60 z-[100] hidden flex justify-center items-center backdrop-blur-sm transition-opacity">
+    <div class="bg-white rounded-2xl w-11/12 max-w-md max-h-[90vh] overflow-y-auto p-6 relative shadow-2xl">
+        
+        <!-- ปุ่มปิด (X) -->
+        <button onclick="closeBookingModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+
+        <h2 class="text-2xl font-bold text-[#3b2c70] mb-2">นัดหมายจองคิว</h2>
+        <p class="text-slate-500 text-sm mb-6">กรอกข้อมูลเพื่อให้เจ้าหน้าที่ติดต่อกลับและยืนยันคิว</p>
+
+        <!-- ฟอร์มกรอกข้อมูล -->
+        <form id="bookingForm" onsubmit="submitBooking(event)" class="space-y-4">
+            
+            <!-- 1. ชื่อ-นามสกุล -->
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-1">ชื่อ-นามสกุล</label>
+                <input type="text" id="b_name" required class="w-full border border-slate-300 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#3b2c70] focus:ring-1 focus:ring-[#3b2c70]">
+            </div>
+            
+            <!-- 2. เบอร์โทรศัพท์ (บังคับแป้นพิมพ์ตัวเลข) -->
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-1">เบอร์โทรศัพท์</label>
+                <input type="tel" id="b_phone" pattern="[0-9]*" inputmode="tel" required class="w-full border border-slate-300 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#3b2c70] focus:ring-1 focus:ring-[#3b2c70]">
+            </div>
+            
+            <!-- 3. LINE ID -->
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-1">LINE ID</label>
+                <input type="text" id="b_line" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#3b2c70] focus:ring-1 focus:ring-[#3b2c70]">
+            </div>
+
+            <!-- 4. วันที่ต้องการนัดหมาย (บังคับหน้าปฏิทิน) -->
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-1">วันที่ต้องการนัดหมาย</label>
+                <input type="date" id="b_date" required class="w-full border border-slate-300 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#3b2c70] focus:ring-1 focus:ring-[#3b2c70]">
+            </div>
+            
+            <!-- 5. เวลาที่ต้องการนัดหมาย (บังคับหน้าปัดเวลา) -->
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-1">เวลาที่ต้องการนัดหมาย (เวลาทำการ 8:00-17:00)</label>
+                <input type="time" id="b_time" required class="w-full border border-slate-300 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#3b2c70] focus:ring-1 focus:ring-[#3b2c70]">
+            </div>
+
+            <!-- 6. รายการตรวจที่เลือก -->
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-1">รายการตรวจที่เลือก</label>
+                <textarea id="b_items" readonly rows="3" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-600 focus:outline-none"></textarea>
+            </div>
+
+            <!-- ปุ่มกดยืนยันส่งข้อมูล -->
+            <button type="submit" class="w-full bg-[#3b2c70] text-white py-3.5 rounded-xl font-bold text-lg hover:bg-purple-900 transition-colors shadow-lg mt-4">
+                ยืนยันการนัดหมาย
+            </button>
+        </form>
+    </div>
+</div>
 </body>
 </html>
