@@ -1825,6 +1825,58 @@
             submitBtn.disabled = false;
         });
     }
+    // ----------------------------------------------------
+    // ฟังก์ชันสำหรับตรวจจับการกดปุ่มบนคีย์บอร์ด
+    // ----------------------------------------------------
+    document.addEventListener('keydown', function(event) {
+        // เช็คว่าปุ่มที่กดคือปุ่ม "Escape" (ESC) หรือไม่
+        if (event.key === 'Escape') {
+            
+            // 1. สั่งปิดหน้าต่างนัดหมาย (ถ้าเปิดอยู่)
+            if (typeof closeBookingModal === 'function') {
+                closeBookingModal();
+            }
+            
+            // 2. สั่งปิดหน้าต่างแจ้งเตือนสีเขียว (ถ้าเปิดอยู่)
+            if (typeof closeSuccessModal === 'function') {
+                closeSuccessModal();
+            }
+            
+            // 3. สั่งปิดหน้าต่างตะกร้าสินค้าด้วย (ถ้าคุณมีฟังก์ชัน closeCart)
+            if (typeof closeCart === 'function') {
+                closeCart();
+            }
+        }
+    });
+</script>
+<script>
+    // 1. ผูกฟังก์ชันปิดหน้าต่างเข้ากับ window เพื่อให้ HTML มองเห็นแน่นอน 100%
+    window.closeBookingModal = function() {
+        const modal = document.getElementById('bookingModal');
+        if (modal) {
+            modal.classList.add('hidden');
+        }
+    };
+
+    // 2. ผูกฟังก์ชันปิดกล่องสีเขียวเข้ากับ window ด้วย (กันเหนียว)
+    window.closeSuccessModal = function() {
+        const successModal = document.getElementById('successModal');
+        if (successModal) {
+            successModal.classList.add('hidden');
+        }
+    };
+
+    // 3. ฟังก์ชันกดปุ่ม ESC แล้วปิดหน้าต่าง
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            if (typeof window.closeBookingModal === 'function') {
+                window.closeBookingModal();
+            }
+            if (typeof window.closeSuccessModal === 'function') {
+                window.closeSuccessModal();
+            }
+        }
+    });
 </script>
     <!-- 🔴 กล่องป๊อปอัปยืนยันการลบทั้งหมด (Custom Modal) -->
     <div id="customConfirmModal" class="fixed inset-0 bg-slate-900/40 z-50 hidden flex items-center justify-center backdrop-blur-sm px-4">
@@ -1876,13 +1928,15 @@
         </div>
     </div>
     <!-- 📅 Modal หน้าต่างนัดหมายจองคิว -->
-<div id="bookingModal" class="fixed inset-0 bg-black bg-opacity-60 z-[100] hidden flex justify-center items-center backdrop-blur-sm transition-opacity">
-    <div class="bg-white rounded-2xl w-11/12 max-w-md max-h-[90vh] overflow-y-auto p-6 relative shadow-2xl">
+    <div id="bookingModal" class="fixed inset-0 bg-black bg-opacity-60 z-[100] hidden flex justify-center items-center backdrop-blur-sm transition-opacity">
+        <div class="bg-white rounded-2xl w-11/12 max-w-md max-h-[90vh] overflow-y-auto p-6 relative shadow-2xl">
         
-        <!-- ปุ่มปิด (X) -->
-        <button onclick="closeBookingModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 transition-colors">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-        </button>
+            <!-- ปุ่มปิด (X) -->
+            <button onclick="closeBookingModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
 
         <h2 class="text-2xl font-bold text-[#3b2c70] mb-2">นัดหมายจองคิว</h2>
         <p class="text-slate-500 text-sm mb-6">กรอกข้อมูลเพื่อให้เจ้าหน้าที่ติดต่อกลับและยืนยันคิว</p>
