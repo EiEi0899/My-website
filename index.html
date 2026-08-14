@@ -1170,19 +1170,19 @@
             let itemTotal = item.price * item.qty;
             total += itemTotal;
             
-            // 🌟 เช็คว่าปุ่มซ้ายควรเป็น "ถังขยะ" หรือ "ลบ"
+            // 🌟 เช็คว่าปุ่มซ้ายควรเป็น "ถังขยะ" หรือ "ลบ" (เปลี่ยนสีเป็นม่วงเข้ม #3b2c70)
             let leftButtonHtml = '';
             if (item.qty === 1) {
                 // ถ้ามี 1 ชิ้น ให้แสดงไอคอนถังขยะ
                 leftButtonHtml = `
-                    <button onclick="decreaseQty(${index})" class="text-[#22c55e] hover:text-green-700 p-1 flex items-center justify-center transition-colors">
+                    <button onclick="decreaseQty(${index})" class="text-[#3b2c70] hover:text-purple-900 p-1 flex items-center justify-center transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                     </button>
                 `;
             } else {
                 // ถ้ามีมากกว่า 1 ให้แสดงเครื่องหมายลบ
                 leftButtonHtml = `
-                    <button onclick="decreaseQty(${index})" class="text-[#22c55e] hover:text-green-700 w-6 h-6 flex items-center justify-center text-lg font-medium transition-colors">
+                    <button onclick="decreaseQty(${index})" class="text-[#3b2c70] hover:text-purple-900 w-6 h-6 flex items-center justify-center text-lg font-bold transition-colors">
                         -
                     </button>
                 `;
@@ -1198,11 +1198,11 @@
                 <div class="flex flex-col items-end gap-2">
                     <p class="text-[#3b2c70] font-bold">${itemTotal.toFixed(2)} ฿</p>
                     
-                    <!-- 🟢 ปุ่มแคปซูล บวก/ลบ สีเขียวแบบที่ต้องการ -->
-                    <div class="flex items-center bg-[#f0fdf4] border border-[#bbf7d0] rounded-full px-1 py-0.5 shadow-sm">
+                    <!-- 🟣 ปุ่มแคปซูล บวก/ลบ เปลี่ยนเป็นพื้นหลังสีม่วงอ่อน (bg-purple-100) แบบภาพที่ 10 -->
+                    <div class="flex items-center bg-purple-100 rounded-full px-1 py-0.5 shadow-sm">
                         ${leftButtonHtml}
-                        <span class="text-[#16a34a] font-semibold text-sm w-6 text-center">${item.qty}</span>
-                        <button onclick="increaseQty(${index})" class="text-[#22c55e] hover:text-green-700 w-6 h-6 flex items-center justify-center text-lg font-medium transition-colors">
+                        <span class="text-[#3b2c70] font-bold text-sm w-6 text-center">${item.qty}</span>
+                        <button onclick="increaseQty(${index})" class="text-[#3b2c70] hover:text-purple-900 w-6 h-6 flex items-center justify-center text-lg font-bold transition-colors">
                             +
                         </button>
                     </div>
