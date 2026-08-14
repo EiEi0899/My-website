@@ -1094,7 +1094,7 @@
     }
 
 // ==========================================
-    // 3. ระบบตะกร้า (อัปเกรด: รวมรายการซ้ำ + นับจำนวน)
+    // 3. ระบบตะกร้า (อัปเกรด: ปุ่มบวก/ลบ สไตล์แอปเดลิเวอรี่)
     // ==========================================
     let cart = []; // เก็บเป็น { name, price, qty }
 
@@ -1103,20 +1103,16 @@
         document.getElementById('cartOverlay').classList.toggle('hidden');
     }
 
-    // ฟังก์ชันเมื่อกดปุ่ม "เพิ่ม"
+    // ฟังก์ชันเมื่อกดปุ่ม "เพิ่ม" จากหน้ารายการ
     function addToCart(name, price) {
-        // เช็คว่าในตะกร้ามีรายการนี้อยู่แล้วหรือยัง?
         const existingItem = cart.find(item => item.name === name);
-        
         if (existingItem) {
-            existingItem.qty += 1; // ถ้ามีแล้ว ให้บวกจำนวนเพิ่ม
+            existingItem.qty += 1;
         } else {
-            cart.push({ name: name, price: price, qty: 1 }); // ถ้ายังไม่มี ให้เพิ่มเข้าไปใหม่ (จำนวน = 1)
+            cart.push({ name: name, price: price, qty: 1 });
         }
-        
         updateCartUI();
         
-        // ทำให้ตัวเลขตะกร้ากระเด้งเตือน
         const badge = document.getElementById('cartCount');
         if(badge) {
             badge.classList.add('animate-ping');
@@ -1124,19 +1120,28 @@
         }
     }
 
-    // ฟังก์ชันลบรายการออก (ลบออกทั้งแถวเลย)
-    function removeFromCart(index) {
-        cart.splice(index, 1);
+    // 🟢 ฟังก์ชันใหม่: กดบวกเพิ่มจำนวน
+    function increaseQty(index) {
+        cart[index].qty += 1;
         updateCartUI();
     }
 
-    // ฟังก์ชันอัปเดตหน้าตาตะกร้าและคำนวณราคา
+    // 🟢 ฟังก์ชันใหม่: กดลบจำนวน (ถ้าเหลือ 1 จะลบออก)
+    function decreaseQty(index) {
+        if (cart[index].qty > 1) {
+            cart[index].qty -= 1; // ถ้ามากกว่า 1 ให้ลดจำนวน
+        } else {
+            cart.splice(index, 1); // ถ้าเป็น 1 ให้ลบออกจากตะกร้าเลย
+        }
+        updateCartUI();
+    }
+
+    // ฟังก์ชันอัปเดตหน้าตาตะกร้า
     function updateCartUI() {
         const list = document.getElementById('cartItems');
         const totalEl = document.getElementById('cartTotal');
         const countEl = document.getElementById('cartCount');
         
-        // 🌟 นับจำนวนชิ้นทั้งหมดในตะกร้า (เอา qty มาบวกกัน)
         let totalItemsCount = cart.reduce((sum, item) => sum + item.qty, 0);
         if(countEl) countEl.innerText = totalItemsCount;
 
@@ -1150,24 +1155,46 @@
         let total = 0;
 
         cart.forEach((item, index) => {
-            // ราคาของรายการนี้ = ราคาต่อชิ้น x จำนวน
             let itemTotal = item.price * item.qty;
             total += itemTotal;
             
+            // 🌟 เช็คว่าปุ่มซ้ายควรเป็น "ถังขยะ" หรือ "ลบ"
+            let leftButtonHtml = '';
+            if (item.qty === 1) {
+                // ถ้ามี 1 ชิ้น ให้แสดงไอคอนถังขยะ
+                leftButtonHtml = `
+                    <button onclick="decreaseQty(${index})" class="text-[#22c55e] hover:text-green-700 p-1 flex items-center justify-center transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                    </button>
+                `;
+            } else {
+                // ถ้ามีมากกว่า 1 ให้แสดงเครื่องหมายลบ
+                leftButtonHtml = `
+                    <button onclick="decreaseQty(${index})" class="text-[#22c55e] hover:text-green-700 w-6 h-6 flex items-center justify-center text-lg font-medium transition-colors">
+                        -
+                    </button>
+                `;
+            }
+
             html += `
-            <li class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex justify-between items-center gap-2">
+            <li class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex justify-between items-center gap-4">
                 <div class="flex-1">
-                    <p class="text-sm font-medium text-slate-700 leading-tight">
-                        ${item.name} 
-                        <!-- 🌟 แสดงจำนวน (x2, x3) ถ้ารายการมากกว่า 0 -->
-                        <span class="text-[#3b2c70] font-bold ml-1 px-2 py-0.5 bg-purple-100 rounded-full text-xs">x${item.qty}</span>
-                    </p>
-                    <p class="text-[#3b2c70] font-bold mt-1">${itemTotal.toFixed(2)} ฿</p>
+                    <p class="text-sm font-medium text-slate-700 leading-tight">${item.name}</p>
+                    <p class="text-slate-500 text-xs mt-1">ราคาต่อหน่วย ${item.price} ฿</p>
                 </div>
-                <!-- ปุ่มถังขยะ -->
-                <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-600 bg-red-50 hover:bg-red-100 p-2 rounded-full transition-colors">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                </button>
+                
+                <div class="flex flex-col items-end gap-2">
+                    <p class="text-[#3b2c70] font-bold">${itemTotal.toFixed(2)} ฿</p>
+                    
+                    <!-- 🟢 ปุ่มแคปซูล บวก/ลบ สีเขียวแบบที่ต้องการ -->
+                    <div class="flex items-center bg-[#f0fdf4] border border-[#bbf7d0] rounded-full px-1 py-0.5 shadow-sm">
+                        ${leftButtonHtml}
+                        <span class="text-[#16a34a] font-semibold text-sm w-6 text-center">${item.qty}</span>
+                        <button onclick="increaseQty(${index})" class="text-[#22c55e] hover:text-green-700 w-6 h-6 flex items-center justify-center text-lg font-medium transition-colors">
+                            +
+                        </button>
+                    </div>
+                </div>
             </li>`;
         });
 
@@ -1184,14 +1211,12 @@
         
         cart.forEach((item, index) => {
             totalItemsCount += item.qty;
-            // 🌟 เพิ่มแสดงจำนวน (x2) ในข้อความ Line ด้วย
             text += `${index + 1}. ${item.name} (x${item.qty}) = ${item.price * item.qty} บ.\n`;
         });
         
         text += `\nจำนวนรวม: ${totalItemsCount} รายการ`;
         text += `\nยอดรวมอ้างอิง: ${document.getElementById('cartTotal').innerText} บาท`;
         
-        // ส่งข้อความไปหน้าแชท Line (@dpudiagnosticlab)
         const lineUrl = `https://line.me/R/ti/p/@dpudiagnosticlab?text=${encodeURIComponent(text)}`;
         window.open(lineUrl, '_blank');
     }
