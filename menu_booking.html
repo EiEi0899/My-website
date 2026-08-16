@@ -18,17 +18,122 @@
         .modal-float {
             animation: floatOut 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
+        /* ลวดลายพื้นหลังเบาๆ */
+        .bg-pattern {
+            background-image: radial-gradient(#4c3b84 0.5px, transparent 0.5px), radial-gradient(#4c3b84 0.5px, #f8fafc 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            background-color: #f8fafc;
+            opacity: 0.8;
+        }
+        /* สไลด์เมนูแฮมเบอร์เกอร์ */
+        .drawer-slide {
+            transition: transform 0.3s ease-in-out;
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-center items-center">
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col relative">
 
-    <!-- ปุ่มเรียกฟังก์ชันเปิดหน้าต่าง -->
-    <button onclick="openBookingModal()" class="px-8 py-4 bg-[#4c3b84] hover:bg-purple-900 text-white font-bold rounded-2xl shadow-lg transition-transform hover:scale-105 flex items-center gap-2 mx-auto">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-        </svg>
-        คลิกเพื่อนัดหมายจองคิว
-    </button>
+    <!-- พื้นหลัง -->
+    <div class="absolute inset-0 bg-pattern -z-10"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-white/80 to-slate-50/95 -z-10"></div>
+
+    <!-- 1. แถบนำทาง (Navbar) -->
+    <nav class="w-full bg-white/80 backdrop-blur-md shadow-sm fixed top-0 z-40 border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <!-- โลโก้ใน Navbar -->
+                <div class="flex justify-center mb-5">
+                <img src="DPU Logo Trasparent.png" onerror="this.onerror=null; this.outerHTML='<div class=\'px-4 py-2 bg-[#4c3b84] text-white font-bold rounded-xl text-base shadow-sm\'>DPU Diagnostic Lab</div>';" class="h-14 object-contain" />
+                </div>
+            </div>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="index.html" target="_blank" class="text-slate-600 hover:text-[#3b2c70] font-medium">หน้าแรก</a>
+                <a href="https://lin.ee/TIjSJf4" target="_blank" class="bg-[#3b2c70] hover:bg-purple-900 text-white px-6 py-2.5 rounded-full font-medium transition-colors">ติดต่อเรา</a>
+            </div>
+            <button onclick="toggleMobileNav()" class="md:hidden text-[#3b2c70] p-2 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 📱 เมนูด้านข้างสไลด์สำหรับมือถือ -->
+    <div id="mobileDrawer" class="fixed inset-y-0 right-0 w-[80%] max-w-xs bg-[#3b2c70] text-white z-50 transform translate-x-full transition-transform duration-300 ease-in-out p-6 shadow-2xl overflow-y-auto md:hidden">
+    
+        <!-- ปุ่มปิด (X) -->
+        <div class="flex justify-end mb-8">
+            <button onclick="toggleMobileNav()" class="text-white hover:text-purple-200 p-1">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- รายการเมนู -->
+        <ul class="space-y-4 text-lg font-medium border-t border-purple-400/30 pt-4">
+            <li>
+                <a href="index.html" target="_blank" class="block hover:text-purple-200 transition-colors">หน้าแรก</a>
+            </li>
+            <li class="pt-4">
+                <a href="https://lin.ee/TIjSJf4" target="_blank" class="block text-center bg-white text-[#3b2c70] py-3 rounded-full font-bold shadow-md hover:bg-purple-100 transition-colors">
+                ติดต่อเรา (LINE)
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 2. ส่วนเนื้อหาหลัก (Hero Section) -->
+    <main class="flex-1 flex flex-col items-center justify-center text-center px-4 pt-28 pb-12 w-full max-w-5xl mx-auto">
+        
+        <!-- กล่องข้อความหลัก -->
+        <div class="bg-white/90 backdrop-blur-sm p-8 md:p-12 rounded-[2rem] shadow-xl w-full border border-slate-100 relative overflow-hidden">
+            <!-- ของตกแต่งกล่อง -->
+            <div class="absolute top-0 right-0 w-32 h-32 bg-purple-100 rounded-full blur-3xl opacity-60 -mr-10 -mt-10 pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 w-32 h-32 bg-blue-100 rounded-full blur-3xl opacity-60 -ml-10 -mb-10 pointer-events-none"></div>
+            <h1 class="text-3xl md:text-5xl font-extrabold text-[#3b2c70] mb-6 leading-tight">
+                Empowering Precision Diagnostics <br class="hidden md:block"/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#4c3b84] to-[#7f64d1]">Through Innovation</span>
+            </h1>
+            <h2 class="text-xl md:text-2xl text-[#3b2c70] mb-8 uppercase font-medium">
+                Redefining the future of clinical laboratory
+            </h2>
+            <p class="text-slate-500 italic mb-10 max-w-3xl mx-auto text-base md:text-lg">
+                Advancing healthcare through intelligent laboratory technologies, scientific excellence, and collaborative innovation—creating a modern diagnostic ecosystem for patient care, education, and future medical research.
+            </p>
+            
+            <!-- ปุ่มเรียกฟังก์ชันเปิดหน้าต่าง -->
+            <button onclick="openBookingModal()" class="px-8 py-4 bg-[#4c3b84] hover:bg-purple-900 text-white font-bold text-lg md:text-xl rounded-full shadow-[0_8px_30px_rgb(76,59,132,0.3)] transition-all hover:-translate-y-1 hover:shadow-[0_10px_40px_rgb(76,59,132,0.4)] flex items-center gap-3 mx-auto relative z-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                คลิกเพื่อนัดหมายจองคิว
+            </button>
+        </div>
+
+        <!-- 3. จุดเด่นบริการ (Feature Cards) -->
+        <div class="grid grid-cols-1 flex-center md:grid-cols-2 gap-6 w-full mt-10">
+            <div class="bg-white/80 backdrop-blur-sm p-6 rounded-3xl shadow-sm border border-slate-100 flex items-start gap-4 text-left hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 bg-blue-50 text-blue-500 rounded-2xl flex items-center justify-center shrink-0">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <div>
+                    <h3 class="font-bold text-[#3b2c70] text-lg">รู้ผลไว ทันใจ</h3>
+                    <p class="text-sm text-slate-500 mt-1">ระบบวิเคราะห์รวดเร็ว พร้อมแจ้งผลทันทีเมื่อเสร็จสิ้น</p>
+                </div>
+            </div>
+            
+            <div class="bg-white/80 backdrop-blur-sm p-6 rounded-3xl shadow-sm border border-slate-100 flex items-start gap-4 text-left hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 bg-purple-50 text-purple-500 rounded-2xl flex items-center justify-center shrink-0">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                </div>
+                <div>
+                    <h3 class="font-bold text-[#3b2c70] text-lg">มาตรฐานสากล</h3>
+                    <p class="text-sm text-slate-500 mt-1">เครื่องมือห้องปฏิบัติการที่ทันสมัยและแม่นยำสูง</p>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <!-- 4. BOOKING MODAL (หน้าต่างป๊อปอัปนัดหมายจองคิว) -->
     <div id="bookingModal" class="fixed inset-0 bg-slate-900/60 z-[100] hidden flex items-center justify-center backdrop-blur-sm p-4">
@@ -40,6 +145,7 @@
                 </svg>
             </button>
 
+            <!-- โลโก้ของคุณ -->
             <div class="flex justify-center mb-5">
                 <img src="DPU Logo Trasparent.png" onerror="this.onerror=null; this.outerHTML='<div class=\'px-4 py-2 bg-[#4c3b84] text-white font-bold rounded-xl text-base shadow-sm\'>DPU Diagnostic Lab</div>';" class="h-14 object-contain" />
             </div>
@@ -69,7 +175,7 @@
                     <input type="time" id="b_time" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#4c3b84] focus:border-[#4c3b84] outline-none transition-all text-sm">
                 </div>
                 
-                <!-- กล่องแสดงรายการที่เลือก พร้อมลิงก์กลับไปแก้ -->
+                <!-- กล่องแสดงรายการที่เลือก พร้อมลิงก์กลับไปแก้ที่คุณระบุไว้ -->
                 <div>
                     <div class="flex justify-between items-center mb-1">
                         <label class="block text-xs font-semibold text-slate-700">รายการตรวจที่เลือก</label>
@@ -148,6 +254,7 @@
             if (modal) modal.classList.add('hidden');
         };
 
+        // ฟังก์ชันปิดป๊อปอัปสำเร็จ (ที่ถูกตัดไป)
         window.closeSuccessModal = function() {
             const successModal = document.getElementById('successModal');
             if (successModal) successModal.classList.add('hidden');
@@ -155,7 +262,8 @@
 
         // ฟังก์ชันส่งข้อมูลเข้า Google Sheets
         window.submitBooking = function(event) {
-            event.preventDefault(); 
+            event.preventDefault(); // กันหน้าเว็บรีเฟรช
+        
             const scriptURL = 'https://script.google.com/macros/s/AKfycbzXLtnF5jX8fo1LJX04i-MQN79KBm5ldj8bv7S3UL3I6DXrUGXm1Z-SFY29LXdWsixtpQ/exec';
 
             const bookingData = {
@@ -182,17 +290,21 @@
                 body: JSON.stringify(bookingData)
             })
             .then(() => {
+                // ปิดหน้าต่างนัดหมาย + ล้างข้อมูลฟอร์ม
                 closeBookingModal(); 
                 const form = document.getElementById('bookingForm');
                 if (form) form.reset();
                 
-                // เคลียร์ข้อมูลในตะกร้าหลังส่งเสร็จ (ถ้าต้องการ)
-                localStorage.removeItem('labCart');
-                
+                // เปิดป๊อปอัปสีเขียวแจ้งเตือนสำเร็จ
                 const successModal = document.getElementById('successModal');
-                if (successModal) successModal.classList.remove('hidden');
+                if (successModal) {
+                    successModal.classList.remove('hidden');
+                }
             })
-            .catch(error => alert('เกิดข้อผิดพลาดในการส่งข้อมูล'))
+            .catch(error => {
+                alert('เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง');
+                console.error('Error:', error);
+            })
             .finally(() => {
                 if (submitBtn) {
                     submitBtn.innerHTML = originalBtnText; 
@@ -201,12 +313,21 @@
             });
         };
 
+        // ดักจับการกดปุ่ม ESC เพื่อปิดป๊อปอัปทั้งหมด
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeBookingModal();
                 closeSuccessModal();
             }
         });
+        // ฟังก์ชันสำหรับเปิด/ปิดเมนูบนมือถือแบบสไลด์
+        window.toggleMobileNav = function() {
+            const drawer = document.getElementById('mobileDrawer');
+            if (drawer) {
+                // สลับคลาส translate-x-full เพื่อให้เมนูสไลด์เข้า/ออก จากด้านขวา
+                drawer.classList.toggle('translate-x-full');
+            }
+        };
     </script>
 </body>
 </html>
