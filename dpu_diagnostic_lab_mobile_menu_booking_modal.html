@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPU Diagnostic Lab - ระบบนัดหมายจองคิว</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Prompt -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Prompt', sans-serif; }
+        /* เอฟเฟกต์เด้งลอยของป๊อปอัป */
+        @keyframes floatOut {
+            0% { opacity: 0; transform: scale(0.92) translateY(24px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .modal-float {
+            animation: floatOut 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-center items-center">
+
+    <!-- ปุ่มเรียกฟังก์ชันเปิดหน้าต่าง -->
+    <button onclick="openBookingModal()" class="px-8 py-4 bg-[#4c3b84] hover:bg-purple-900 text-white font-bold rounded-2xl shadow-lg transition-transform hover:scale-105 flex items-center gap-2 mx-auto">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+        </svg>
+        คลิกเพื่อนัดหมายจองคิว
+    </button>
+
+    <!-- 4. BOOKING MODAL (หน้าต่างป๊อปอัปนัดหมายจองคิว) -->
+    <div id="bookingModal" class="fixed inset-0 bg-slate-900/60 z-[100] hidden flex items-center justify-center backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl p-6 md:p-8 w-full max-w-md shadow-2xl relative modal-float max-h-[90vh] overflow-y-auto">
+            
+            <button onclick="closeBookingModal()" class="absolute top-5 right-5 text-slate-400 hover:text-red-500 transition-colors z-50 cursor-pointer p-1.5 bg-slate-50 rounded-full hover:bg-red-50">
+                <svg class="w-6 h-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+
+            <div class="flex justify-center mb-5">
+                <img src="DPU Logo Trasparent.png" onerror="this.onerror=null; this.outerHTML='<div class=\'px-4 py-2 bg-[#4c3b84] text-white font-bold rounded-xl text-base shadow-sm\'>DPU Diagnostic Lab</div>';" class="h-14 object-contain" />
+            </div>
+
+            <h3 class="text-2xl font-bold text-[#4c3b84] mb-1 text-center">นัดหมายจองคิว</h3>
+            <p class="text-xs text-slate-500 mb-6 text-center">กรอกข้อมูลเพื่อให้เจ้าหน้าที่ติดต่อกลับและยืนยันคิว</p>
+
+            <form id="bookingForm" onsubmit="submitBooking(event)" class="space-y-4 text-left">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">ชื่อ-นามสกุล</label>
+                    <input type="text" id="b_name" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#4c3b84] focus:border-[#4c3b84] outline-none transition-all text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">เบอร์โทรศัพท์</label>
+                    <input type="tel" id="b_phone" pattern="[0-9]*" inputmode="tel" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#4c3b84] focus:border-[#4c3b84] outline-none transition-all text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">LINE ID</label>
+                    <input type="text" id="b_line" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#4c3b84] focus:border-[#4c3b84] outline-none transition-all text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">วันที่ต้องการนัดหมาย</label>
+                    <input type="date" id="b_date" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#4c3b84] focus:border-[#4c3b84] outline-none transition-all text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">เวลาที่ต้องการนัดหมาย (8:00-17:00)</label>
+                    <input type="time" id="b_time" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#4c3b84] focus:border-[#4c3b84] outline-none transition-all text-sm">
+                </div>
+                
+                <!-- กล่องแสดงรายการที่เลือก พร้อมลิงก์กลับไปแก้ -->
+                <div>
+                    <div class="flex justify-between items-center mb-1">
+                        <label class="block text-xs font-semibold text-slate-700">รายการตรวจที่เลือก</label>
+                        <a href="index.html#services" class="text-xs font-medium text-purple-600 hover:text-purple-800 underline">
+                            เพิ่ม/แก้ไขรายการ
+                        </a>
+                    </div>
+                    <textarea id="b_items" readonly rows="2" class="w-full bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-200 text-xs text-slate-600 outline-none"></textarea>
+                </div>
+                
+                <div class="pt-2">
+                    <button type="submit" class="w-full py-3.5 bg-[#4c3b84] hover:bg-purple-900 text-white font-bold text-base rounded-xl transition-all shadow-lg hover:shadow-xl">
+                        ยืนยันการนัดหมาย
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 5. SUCCESS MODAL (ป๊อปอัปแจ้งเตือนสำเร็จสีเขียว) -->
+    <div id="successModal" class="fixed inset-0 bg-slate-900/60 z-[110] hidden flex items-center justify-center backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl p-6 w-full max-w-sm shadow-2xl modal-float text-center">
+            <div class="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-[#4c3b84] mb-2">นัดหมายสำเร็จ!</h3>
+            <p class="text-xs text-slate-500 mb-6">ข้อมูลของคุณถูกบันทึกลงระบบเรียบร้อย</p>
+            <button onclick="closeSuccessModal()" class="w-full py-3 bg-[#4c3b84] hover:bg-purple-900 text-white font-bold rounded-xl transition-colors shadow-md">
+                ตกลง
+            </button>
+        </div>
+    </div>
+
+    <!-- 6. JAVASCRIPT LOGIC -->
+    <script>
+        // ฟังก์ชันเปิดป๊อปอัป และดึงข้อมูลจากความจำเบราว์เซอร์
+        window.openBookingModal = function() {
+            const modal = document.getElementById('bookingModal');
+            const bItems = document.getElementById('b_items');
+            
+            // ดึงข้อมูลที่เซฟไว้จากอีกหน้า
+            let savedCart = [];
+            try {
+                const cartData = localStorage.getItem('labCart');
+                if (cartData) savedCart = JSON.parse(cartData);
+            } catch(e) {
+                console.error(e);
+            }
+
+            // นำมาแสดงผล
+            if (savedCart.length > 0) {
+                let itemList = savedCart.map((item, i) => `${i + 1}. ${item.name} (x${item.qty || 1})`).join('\n');
+                if (bItems) bItems.value = itemList;
+            } else {
+                if (bItems) bItems.value = "นัดหมายทั่วไป (ไม่ได้เลือกแพ็กเกจ)";
+            }
+
+            if (modal) modal.classList.remove('hidden');
+        };
+
+        // ดักจับตอนเด้งมาจากหน้าเลือกรายการ (ให้เปิดป๊อปอัปทันที)
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('action') === 'book') {
+                openBookingModal();
+                // ลบ url ที่รกๆ ออก
+                window.history.replaceState({}, document.title, "index.html");
+            }
+        });
+
+        // ฟังก์ชันปิดป๊อปอัป
+        window.closeBookingModal = function() {
+            const modal = document.getElementById('bookingModal');
+            if (modal) modal.classList.add('hidden');
+        };
+
+        window.closeSuccessModal = function() {
+            const successModal = document.getElementById('successModal');
+            if (successModal) successModal.classList.add('hidden');
+        };
+
+        // ฟังก์ชันส่งข้อมูลเข้า Google Sheets
+        window.submitBooking = function(event) {
+            event.preventDefault(); 
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzXLtnF5jX8fo1LJX04i-MQN79KBm5ldj8bv7S3UL3I6DXrUGXm1Z-SFY29LXdWsixtpQ/exec';
+
+            const bookingData = {
+                name: document.getElementById('b_name') ? document.getElementById('b_name').value : '',
+                phone: document.getElementById('b_phone') ? document.getElementById('b_phone').value : '',
+                lineId: document.getElementById('b_line') ? document.getElementById('b_line').value : '',
+                date: document.getElementById('b_date') ? document.getElementById('b_date').value : '',
+                time: document.getElementById('b_time') ? document.getElementById('b_time').value : '',
+                items: document.getElementById('b_items') ? document.getElementById('b_items').value : ''
+            };
+
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+            
+            if (submitBtn) {
+                submitBtn.innerText = 'กำลังส่งข้อมูล...';
+                submitBtn.disabled = true;
+            }
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(bookingData)
+            })
+            .then(() => {
+                closeBookingModal(); 
+                const form = document.getElementById('bookingForm');
+                if (form) form.reset();
+                
+                // เคลียร์ข้อมูลในตะกร้าหลังส่งเสร็จ (ถ้าต้องการ)
+                localStorage.removeItem('labCart');
+                
+                const successModal = document.getElementById('successModal');
+                if (successModal) successModal.classList.remove('hidden');
+            })
+            .catch(error => alert('เกิดข้อผิดพลาดในการส่งข้อมูล'))
+            .finally(() => {
+                if (submitBtn) {
+                    submitBtn.innerHTML = originalBtnText; 
+                    submitBtn.disabled = false;
+                }
+            });
+        };
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeBookingModal();
+                closeSuccessModal();
+            }
+        });
+    </script>
+</body>
+</html>
