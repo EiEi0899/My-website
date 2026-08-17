@@ -86,7 +86,7 @@
             <a href="#services" onclick="toggleMobileNav()" class="block hover:text-purple-200 transition-colors">อัตราค่าบริการ</a>
         </li>
         <li>
-            <a href="menu_booking.html" target="_blank" onclick="toggleMobileNav()" class="block hover:text-purple-200 transition-colors">นัดหมายจองคิว</a>
+            <a href="menu_booking.html" target="_blank" class="block hover:text-purple-200 transition-colors">นัดหมายจองคิว</a>
         </li>
         <li class="pt-4">
             <a href="https://lin.ee/TIjSJf4" target="_blank" class="block text-center bg-white text-[#3b2c70] py-3 rounded-full font-bold shadow-md hover:bg-purple-100 transition-colors">
@@ -2371,6 +2371,47 @@
             submitBtn.disabled = false;
         });
     }
+    // ฟังก์ชันส่งข้อมูลเข้า Google Sheets
+        window.submitBooking = function(event) {
+            event.preventDefault(); // กันหน้าเว็บรีเฟรช
+        
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzXLtnF5jX8fo1LJX04i-MQN79KBm5ldj8bv7S3UL3I6DXrUGXm1Z-SFY29LXdWsixtpQ/exec';
+
+            // ... (โค้ดส่วนดึงข้อมูล value จากฟอร์ม) ...
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(bookingData)
+            })
+            .then(() => {
+                // ปิดหน้าต่างนัดหมาย + ล้างข้อมูลฟอร์ม
+                closeBookingModal(); 
+                const form = document.getElementById('bookingForm');
+                if (form) form.reset();
+                
+                // ล้างข้อมูลทั้งหมดหลังส่งสำเร็จ
+                localStorage.removeItem('labCart');
+                localStorage.removeItem('labUserData'); // <- วางตรงนี้ครับ!
+                
+                // เปิดป๊อปอัปสีเขียวแจ้งเตือนสำเร็จ
+                const successModal = document.getElementById('successModal');
+                if (successModal) {
+                    successModal.classList.remove('hidden');
+                }
+            })
+            .catch(error => {
+                alert('เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง');
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                if (submitBtn) {
+                    submitBtn.innerHTML = originalBtnText; 
+                    submitBtn.disabled = false;
+                }
+            });
+        };
     // ----------------------------------------------------
     // ฟังก์ชันสำหรับตรวจจับการกดปุ่มบนคีย์บอร์ด
     // ----------------------------------------------------

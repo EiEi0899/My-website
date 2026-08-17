@@ -179,8 +179,8 @@
                 <div>
                     <div class="flex justify-between items-center mb-1">
                         <label class="block text-xs font-semibold text-slate-700">รายการตรวจที่เลือก</label>
-                        <a href="index.html#services" class="text-xs font-medium text-purple-600 hover:text-purple-800 underline">
-                            เพิ่ม/แก้ไขรายการ
+                        <a href="#" onclick="goToServicesAndSave(event)" class="text-xs font-medium text-purple-600 hover:text-purple-800 underline">
+                            เพิ่มรายการตรวจ
                         </a>
                     </div>
                     <textarea id="b_items" readonly rows="2" class="w-full bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-200 text-xs text-slate-600 outline-none"></textarea>
@@ -218,7 +218,7 @@
             const modal = document.getElementById('bookingModal');
             const bItems = document.getElementById('b_items');
             
-            // ดึงข้อมูลที่เซฟไว้จากอีกหน้า
+            // 1. ดึงข้อมูลรายการตรวจที่เลือก (ตะกร้า)
             let savedCart = [];
             try {
                 const cartData = localStorage.getItem('labCart');
@@ -227,7 +227,6 @@
                 console.error(e);
             }
 
-            // นำมาแสดงผล
             if (savedCart.length > 0) {
                 let itemList = savedCart.map((item, i) => `${i + 1}. ${item.name} (x${item.qty || 1})`).join('\n');
                 if (bItems) bItems.value = itemList;
@@ -235,6 +234,22 @@
                 if (bItems) bItems.value = "นัดหมายทั่วไป (ไม่ได้เลือกแพ็กเกจ)";
             }
 
+            // 2. ดึงข้อมูลประวัติที่ลูกค้ากรอกค้างไว้ มาใส่ในช่อง
+            try {
+                const savedUserData = localStorage.getItem('labUserData');
+                if (savedUserData) {
+                    const userData = JSON.parse(savedUserData);
+                    if (document.getElementById('b_name')) document.getElementById('b_name').value = userData.name || '';
+                    if (document.getElementById('b_phone')) document.getElementById('b_phone').value = userData.phone || '';
+                    if (document.getElementById('b_line')) document.getElementById('b_line').value = userData.line || '';
+                    if (document.getElementById('b_date')) document.getElementById('b_date').value = userData.date || '';
+                    if (document.getElementById('b_time')) document.getElementById('b_time').value = userData.time || '';
+                }
+            } catch(e) {
+                console.error(e);
+            }
+
+            // แสดงหน้าต่าง
             if (modal) modal.classList.remove('hidden');
         };
 
@@ -294,6 +309,10 @@
                 closeBookingModal(); 
                 const form = document.getElementById('bookingForm');
                 if (form) form.reset();
+
+                // ล้างข้อมูลทั้งหมดหลังส่งสำเร็จ (เพิ่มบรรทัดนี้ลงไป)
+                localStorage.removeItem('labCart');
+                localStorage.removeItem('labUserData');
                 
                 // เปิดป๊อปอัปสีเขียวแจ้งเตือนสำเร็จ
                 const successModal = document.getElementById('successModal');
@@ -327,6 +346,25 @@
                 // สลับคลาส translate-x-full เพื่อให้เมนูสไลด์เข้า/ออก จากด้านขวา
                 drawer.classList.toggle('translate-x-full');
             }
+        };
+        // ฟังก์ชันบันทึกข้อมูลฟอร์มก่อนย้ายไปหน้าเลือกบริการ
+        window.goToServicesAndSave = function(event) {
+            event.preventDefault(); // ป้องกันไม่ให้ลิงก์ทำงานทันที
+            
+            // เก็บข้อมูลที่กรอกไว้ลง Object
+            const userData = {
+                name: document.getElementById('b_name') ? document.getElementById('b_name').value : '',
+                phone: document.getElementById('b_phone') ? document.getElementById('b_phone').value : '',
+                line: document.getElementById('b_line') ? document.getElementById('b_line').value : '',
+                date: document.getElementById('b_date') ? document.getElementById('b_date').value : '',
+                time: document.getElementById('b_time') ? document.getElementById('b_time').value : ''
+            };
+            
+            // เซฟลงความจำเบราว์เซอร์
+            localStorage.setItem('labUserData', JSON.stringify(userData));
+            
+            // ย้ายหน้าไปที่ index.html#services
+            window.location.href = 'index.html#services';
         };
     </script>
 </body>
