@@ -258,7 +258,6 @@
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('action') === 'book') {
                 openBookingModal();
-                // ลบ url ที่รกๆ ออก
                 window.history.replaceState({}, document.title, "index.html");
             }
         });
@@ -269,7 +268,7 @@
             if (modal) modal.classList.add('hidden');
         };
 
-        // ฟังก์ชันปิดป๊อปอัปสำเร็จ (ที่ถูกตัดไป)
+        // ฟังก์ชันปิดป๊อปอัปสำเร็จ
         window.closeSuccessModal = function() {
             const successModal = document.getElementById('successModal');
             if (successModal) successModal.classList.add('hidden');
