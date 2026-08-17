@@ -2371,8 +2371,26 @@
         
             const scriptURL = 'https://script.google.com/macros/s/AKfycbzXLtnF5jX8fo1LJX04i-MQN79KBm5ldj8bv7S3UL3I6DXrUGXm1Z-SFY29LXdWsixtpQ/exec';
 
-            // ... (โค้ดส่วนดึงข้อมูล value จากฟอร์ม) ...
+            // สร้างตัวแปร bookingData เพื่อดึงข้อมูลจากฟอร์ม (ส่วนนี้ที่หายไป)
+            const bookingData = {
+                name: document.getElementById('b_name') ? document.getElementById('b_name').value : '',
+                phone: document.getElementById('b_phone') ? document.getElementById('b_phone').value : '',
+                lineId: document.getElementById('b_line') ? document.getElementById('b_line').value : '',
+                date: document.getElementById('b_date') ? document.getElementById('b_date').value : '',
+                time: document.getElementById('b_time') ? document.getElementById('b_time').value : '',
+                items: document.getElementById('b_items') ? document.getElementById('b_items').value : ''
+            };
 
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+            
+            // เปลี่ยนข้อความปุ่มตอนกำลังโหลด
+            if (submitBtn) {
+                submitBtn.innerText = 'กำลังส่งข้อมูล...';
+                submitBtn.disabled = true;
+            }
+
+            // ส่งข้อมูลไปยัง Google Sheets
             fetch(scriptURL, {
                 method: 'POST',
                 mode: 'no-cors',
@@ -2385,14 +2403,22 @@
                 const form = document.getElementById('bookingForm');
                 if (form) form.reset();
                 
-                // ล้างข้อมูลทั้งหมดหลังส่งสำเร็จ
+                // ล้างข้อมูลความจำในเครื่องหลังส่งสำเร็จ
                 localStorage.removeItem('labCart');
-                localStorage.removeItem('labUserData'); // <- วางตรงนี้ครับ!
+                localStorage.removeItem('labUserData'); 
                 
                 // เปิดป๊อปอัปสีเขียวแจ้งเตือนสำเร็จ
                 const successModal = document.getElementById('successModal');
                 if (successModal) {
                     successModal.classList.remove('hidden');
+                    
+                    // สั่งให้กล่องสีเขียวเด้งขึ้นมา
+                    const successBox = document.getElementById('successBox');
+                    if (successBox) {
+                        successBox.classList.remove('modal-float');
+                        void successBox.offsetWidth; // บังคับรีเฟรชแอนิเมชัน
+                        successBox.classList.add('modal-float');
+                    }
                 }
             })
             .catch(error => {
@@ -2400,6 +2426,7 @@
                 console.error('Error:', error);
             })
             .finally(() => {
+                // คืนค่าปุ่มกลับเป็นเหมือนเดิม
                 if (submitBtn) {
                     submitBtn.innerHTML = originalBtnText; 
                     submitBtn.disabled = false;
@@ -2541,8 +2568,8 @@
         </div>
     </div>
     <!-- 📅 Modal หน้าต่างนัดหมายจองคิว -->
-    <div id="bookingModal" class="fixed inset-0 bg-black bg-opacity-60 z-[100] hidden flex justify-center items-center backdrop-blur-sm transition-opacity">
-        <div class="bg-white rounded-2xl w-11/12 max-w-md max-h-[90vh] overflow-y-auto p-6 relative shadow-2xl">
+    <div id="bookingModal" class="fixed inset-0 bg-slate-900/60 z-[100] hidden flex items-center justify-center backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl p-6 md:p-8 w-full max-w-md shadow-2xl relative modal-float max-h-[90vh] overflow-y-auto">
         
             <!-- ปุ่มปิด (X) -->
             <button onclick="closeBookingModal()" class="absolute top-5 right-5 text-slate-400 hover:text-red-500 transition-colors z-50 cursor-pointer p-1.5 bg-slate-50 rounded-full hover:bg-red-50">
@@ -2575,13 +2602,13 @@
                 <input type="text" id="b_line" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#3b2c70] focus:ring-1 focus:ring-[#3b2c70]">
             </div>
 
-            <!-- 4. วันที่ต้องการนัดหมาย (บังคับหน้าปฏิทิน) -->
+            <!-- 4. วันที่ต้องการนัดหมาย -->
             <div>
                 <label class="block text-sm font-semibold text-slate-700 mb-1">วันที่ต้องการนัดหมาย</label>
                 <input type="date" id="b_date" required class="w-full border border-slate-300 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#3b2c70] focus:ring-1 focus:ring-[#3b2c70]">
             </div>
             
-            <!-- 5. เวลาที่ต้องการนัดหมาย (บังคับหน้าปัดเวลา) -->
+            <!-- 5. เวลาที่ต้องการนัดหมาย -->
             <div>
                 <label class="block text-sm font-semibold text-slate-700 mb-1">เวลาที่ต้องการนัดหมาย (เวลาทำการ 8:00-17:00)</label>
                 <input type="time" id="b_time" required class="w-full border border-slate-300 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#3b2c70] focus:ring-1 focus:ring-[#3b2c70]">
