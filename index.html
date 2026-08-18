@@ -32,8 +32,28 @@
             background-attachment: fixed
         }
     </style>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="bg-slate-50 text-slate-800">
+
+<header class="fixed top-0 left-0 w-full z-50">
+<!-- Top Bar -->
+<div class="bg-[#3b2c70] text-white py-2">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-center items-center gap-6 text-sm">
+            <div class="flex items-center gap-2">
+                <i data-lucide="clock" class="w-4 h-4 text-white"></i>
+                <span>เปิดบริการทุกวัน 08:00 - 17:00 น.</span>
+                <i data-lucide="phone" class="w-4 h-4 text-white"></i>
+                <a href="tel:0962736888" class="hover:text-[#6fbce9] transition-colors">
+                    096-273-6888
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Navigation Bar -->
 <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
@@ -61,6 +81,7 @@
         </div>
     </div>
 </nav>
+</header>
 
 <!-- 📱 เมนูด้านข้างสไลด์สำหรับมือถือ -->
 <div id="mobileDrawer" class="fixed inset-y-0 right-0 w-[80%] max-w-xs bg-[#3b2c70] text-white z-50 transform translate-x-full transition-transform duration-300 ease-in-out p-6 shadow-2xl overflow-y-auto md:hidden">
@@ -129,21 +150,16 @@
         </div>
 
         <!-- Scroll Down Indicator -->
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#expertise" class="text-white opacity-70 hover:opacity-100">
+                <div class="icon-chevron-down"></div>
+                <i data-lucide="chevron-down" class="w-8 h-8"></i>
+            </a>
             <a
-                href="#services"
+                href="#expertise"
                 class="flex flex-col items-center text-white opacity-80 hover:opacity-100 transition-opacity duration-300"
-                aria-label="Scroll to services"
+                aria-label="chevron-down-icon"
             >
-                <!-- Text -->
-                <span class="text-xs tracking-[0.25em] mb-2">
-                    SCROLL TO EXPLORE
-                </span>
-                <!-- Animated Arrow -->
-                <i
-                    data-lucide="chevron-down"
-                    class="w-8 h-8 animate-bounce"
-                ></i>
             </a>
         </div>
     </section>
@@ -2557,6 +2573,9 @@
             window.history.replaceState({}, document.title, "index.html");
         }
     });
+</script>
+<script>
+    lucide.createIcons();
 </script>
     <!-- 🔴 กล่องป๊อปอัปยืนยันการลบทั้งหมด (Custom Modal) -->
     <div id="customConfirmModal" class="fixed inset-0 bg-slate-900/40 z-50 hidden flex items-center justify-center backdrop-blur-sm px-4">
