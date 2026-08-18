@@ -6,6 +6,8 @@
     <title>DPU Diagnostic Lab - ระบบนัดหมายจองคิว</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <!-- Google Fonts: Prompt -->
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -55,7 +57,7 @@
         </div>
     </div>
     <!-- Navbar -->
-    <nav class="fixed w-full bg-white/80 backdrop-blur-md shadow-sm z-40">
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <!-- โลโก้ใน Navbar -->
@@ -109,7 +111,7 @@
             <!-- ของตกแต่งกล่อง -->
             <div class="absolute top-0 right-0 w-32 h-32 bg-purple-100 rounded-full blur-3xl opacity-60 -mr-10 -mt-10 pointer-events-none"></div>
             <div class="absolute bottom-0 left-0 w-32 h-32 bg-blue-100 rounded-full blur-3xl opacity-60 -ml-10 -mb-10 pointer-events-none"></div>
-            <h1 class="text-3xl md:text-5xl font-extrabold text-[#3b2c70] mb-6 leading-tight">
+            <h1 class="text-3xl md:text-5xl font-extrabold text-[#3b2c70] mb-6 leading-tight uppercase">
                 Empowering Precision Diagnostics <br class="hidden md:block"/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#4c3b84] to-[#7f64d1]">Through Innovation</span>
             </h1>
             <h2 class="text-xl md:text-2xl text-[#3b2c70] mb-8 uppercase font-medium">
@@ -382,6 +384,9 @@
             // ย้ายหน้าไปที่ index.html#services
             window.location.href = 'index.html#services';
         };
+    </script>
+    <script>
+        lucide.createIcons();
     </script>
 </body>
 </html>
