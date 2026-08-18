@@ -66,8 +66,14 @@
                 </div>
             </div>
             <div class="hidden md:flex space-x-8 items-center">
-                <a href="index.html" target="_blank" class="text-slate-600 hover:text-[#3b2c70] font-medium">หน้าแรก</a>
-                <a href="https://lin.ee/TIjSJf4" target="_blank" class="bg-[#3b2c70] hover:bg-purple-900 text-white px-6 py-2.5 rounded-full font-medium transition-colors">ติดต่อเรา</a>
+                <a href="index.html" target="_blank" class="text-slate-600 hover:text-[#3b2c70] font-medium" data-lang="home">หน้าแรก</a>
+                <a href="https://lin.ee/TIjSJf4" target="_blank" class="bg-[#3b2c70] hover:bg-purple-900 text-white px-6 py-2.5 rounded-full font-medium transition-colors" data-lang="contact">ติดต่อเรา</a>
+                <select id="languageSelector"
+                    class="border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-700 outline-none">
+                        <option value="th">🇹🇭 ไทย</option>
+                        <option value="en">🇬🇧 English</option>
+                        <option value="zh">🇨🇳 中文</option>
+                </select>
             </div>
             <button onclick="toggleMobileNav()" class="md:hidden text-[#3b2c70] p-2 focus:outline-none">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -82,7 +88,13 @@
     <div id="mobileDrawer" class="fixed inset-y-0 right-0 w-[80%] max-w-xs bg-[#3b2c70] text-white z-50 transform translate-x-full transition-transform duration-300 ease-in-out p-6 shadow-2xl overflow-y-auto md:hidden">
     
         <!-- ปุ่มปิด (X) -->
-        <div class="flex justify-end mb-8">
+        <div class="flex justify-between mb-8">
+            <select id="languageSelector"
+                class="border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-700">
+                <option value="th">🇹🇭 ไทย</option>
+                <option value="en">🇬🇧 English</option>
+                <option value="zh">🇨🇳 中文</option>
+            </select>
             <button onclick="toggleMobileNav()" class="text-white hover:text-purple-200 p-1">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -93,10 +105,10 @@
         <!-- รายการเมนู -->
         <ul class="space-y-4 text-lg font-medium border-t border-purple-400/30 pt-4">
             <li>
-                <a href="index.html" target="_blank" class="block hover:text-purple-200 transition-colors">หน้าแรก</a>
+                <a href="index.html" target="_blank" class="block hover:text-purple-200 transition-colors" data-lang="Home">หน้าแรก</a>
             </li>
             <li class="pt-4">
-                <a href="https://lin.ee/TIjSJf4" target="_blank" class="block text-center bg-white text-[#3b2c70] py-3 rounded-full font-bold shadow-md hover:bg-purple-100 transition-colors">
+                <a href="https://lin.ee/TIjSJf4" target="_blank" class="block text-center bg-white text-[#3b2c70] py-3 rounded-full font-bold shadow-md hover:bg-purple-100 transition-colors" data-lang="contact">
                 ติดต่อเรา (LINE)
                 </a>
             </li>
@@ -137,8 +149,8 @@
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
                 <div>
-                    <h3 class="font-bold text-[#3b2c70] text-lg">รู้ผลไว ทันใจ</h3>
-                    <p class="text-sm text-slate-500 mt-1">ระบบวิเคราะห์รวดเร็ว พร้อมแจ้งผลทันทีเมื่อเสร็จสิ้น</p>
+                    <h3 class="font-bold text-[#3b2c70] text-lg" data-lang="fastResult">รู้ผลไว ทันใจ</h3>
+                    <p class="text-sm text-slate-500 mt-1" data-lang="fastResultDesc">ระบบวิเคราะห์รวดเร็ว พร้อมแจ้งผลทันทีเมื่อเสร็จสิ้น</p>
                 </div>
             </div>
             
@@ -147,8 +159,8 @@
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                 </div>
                 <div>
-                    <h3 class="font-bold text-[#3b2c70] text-lg">มาตรฐานสากล</h3>
-                    <p class="text-sm text-slate-500 mt-1">เครื่องมือห้องปฏิบัติการที่ทันสมัยและแม่นยำสูง</p>
+                    <h3 class="font-bold text-[#3b2c70] text-lg" data-lang="standard">มาตรฐานสากล</h3>
+                    <p class="text-sm text-slate-500 mt-1" data-lang="standardDesc">เครื่องมือห้องปฏิบัติการที่ทันสมัยและแม่นยำสูง</p>
                 </div>
             </div>
         </div>
@@ -384,6 +396,56 @@
             // ย้ายหน้าไปที่ index.html#services
             window.location.href = 'index.html#services';
         };
+        const translations = {
+    th: {
+        home: "หน้าแรก",
+        contact: "ติดต่อเรา",
+        booking: "นัดหมายจองคิว",
+        fastResult: "รู้ผลไว ทันใจ",
+        fastResultDesc: "ระบบวิเคราะห์รวดเร็ว พร้อมแจ้งผลทันทีเมื่อเสร็จสิ้น",
+        standard: "มาตรฐานสากล",
+        standardDesc: "เครื่องมือห้องปฏิบัติการที่ทันสมัยและแม่นยำสูง"
+    },
+
+    en: {
+        home: "Home",
+        contact: "Contact Us",
+        booking: "Book an Appointment",
+        fastResult: "Fast Results",
+        fastResultDesc: "Fast analysis with results provided promptly upon completion.",
+        standard: "International Standards",
+        standardDesc: "Modern and highly accurate laboratory equipment."
+    },
+
+    zh: {
+        home: "首页",
+        contact: "联系我们",
+        booking: "预约",
+        fastResult: "快速获得结果",
+        fastResultDesc: "快速分析，检测完成后及时提供结果。",
+        standard: "国际标准",
+        standardDesc: "采用先进且高精度的实验室设备。"
+    }
+};
+
+document.getElementById("languageSelector").addEventListener("change", function () {
+
+    const lang = this.value;
+
+    document.documentElement.lang =
+        lang === "zh" ? "zh-CN" : lang;
+
+    document.querySelectorAll("[data-lang]").forEach(element => {
+
+        const key = element.getAttribute("data-lang");
+
+        if (translations[lang][key]) {
+            element.textContent = translations[lang][key];
+        }
+
+    });
+
+});
     </script>
     <script>
         lucide.createIcons();
