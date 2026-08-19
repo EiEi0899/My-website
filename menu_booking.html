@@ -33,6 +33,12 @@
         .drawer-slide {
             transition: transform 0.3s ease-in-out;
         }
+        /* ซ่อนแถบ Google Translate แถบบนสุด และ Tooltip */
+        .VIpgJd-Zvi9od-ORHb-OEVmcd { display: none !important; }
+        .goog-te-banner-frame { display: none !important; }
+        body { top: 0 !important; }
+        #goog-gt-tt { display: none !important; }
+        .VIpgJd-Zvi9od-l4eHX-hSRGPd { display: none !important; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col relative">
@@ -87,13 +93,22 @@
                    class="bg-[#3b2c70] hover:bg-purple-900 text-white px-6 py-2.5 rounded-full font-medium transition-colors">
                     ติดต่อเรา
                 </a>
-                <select
-                    id="languageSelector"
-                    class="border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-700 outline-none">
-                    <option value="th">ไทย</option>
-                    <option value="en">English</option>
-                    <option value="zh">中文</option>
-                </select>
+                <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200">
+                    <button onclick="changeLanguage('th')" data-lang-btn="th"
+                        class="lang-btn text-xs font-bold px-2 py-1 rounded bg-white text-[#3b2c70] shadow-sm transition-all">
+                        TH
+                    </button>
+
+                    <button onclick="changeLanguage('en')" data-lang-btn="en"
+                        class="lang-btn text-xs font-medium px-2 py-1 rounded text-slate-500 hover:text-[#3b2c70] transition-all">
+                        EN
+                    </button>
+
+                    <button onclick="changeLanguage('zh-CN')" data-lang-btn="zh-CN"
+                        class="lang-btn text-xs font-medium px-2 py-1 rounded text-slate-500 hover:text-[#3b2c70] transition-all">
+                        CN
+                    </button>
+                </div>
             </div>
 
             <!-- Mobile Menu Button -->
@@ -121,12 +136,22 @@
     
         <!-- ปุ่มปิด (X) -->
         <div class="flex justify-between mb-8">
-            <select id="languageSelector"
-                class="border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-700 outline-none">
-                <option value="th">ไทย</option>
-                <option value="en">English</option>
-                <option value="zh">中文</option>
-            </select>
+            <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200">
+                <button onclick="changeLanguage('th')" data-lang-btn="th"
+                    class="lang-btn text-xs font-bold px-2 py-1 rounded bg-white text-[#3b2c70] shadow-sm transition-all">
+                    TH
+                </button>
+
+                <button onclick="changeLanguage('en')" data-lang-btn="en"
+                    class="lang-btn text-xs font-medium px-2 py-1 rounded text-slate-500 hover:text-[#3b2c70] transition-all">
+                    EN
+                </button>
+
+                <button onclick="changeLanguage('zh-CN')" data-lang-btn="zh-CN"
+                    class="lang-btn text-xs font-medium px-2 py-1 rounded text-slate-500 hover:text-[#3b2c70] transition-all">
+                    CN
+                </button>
+            </div>
             <button onclick="toggleMobileNav()" class="text-white hover:text-purple-200 p-1">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -372,7 +397,7 @@
                 const form = document.getElementById('bookingForm');
                 if (form) form.reset();
 
-                // ล้างข้อมูลทั้งหมดหลังส่งสำเร็จ (เพิ่มบรรทัดนี้ลงไป)
+                // ล้างข้อมูลทั้งหมดหลังส่งสำเร็จ
                 localStorage.removeItem('labCart');
                 localStorage.removeItem('labUserData');
                 
@@ -401,19 +426,19 @@
                 closeSuccessModal();
             }
         });
+
         // ฟังก์ชันสำหรับเปิด/ปิดเมนูบนมือถือแบบสไลด์
         window.toggleMobileNav = function() {
             const drawer = document.getElementById('mobileDrawer');
             if (drawer) {
-                // สลับคลาส translate-x-full เพื่อให้เมนูสไลด์เข้า/ออก จากด้านขวา
                 drawer.classList.toggle('translate-x-full');
             }
         };
+
         // ฟังก์ชันบันทึกข้อมูลฟอร์มก่อนย้ายไปหน้าเลือกบริการ
         window.goToServicesAndSave = function(event) {
-            event.preventDefault(); // ป้องกันไม่ให้ลิงก์ทำงานทันที
+            event.preventDefault(); 
             
-            // เก็บข้อมูลที่กรอกไว้ลง Object
             const userData = {
                 name: document.getElementById('b_name') ? document.getElementById('b_name').value : '',
                 phone: document.getElementById('b_phone') ? document.getElementById('b_phone').value : '',
@@ -422,65 +447,119 @@
                 time: document.getElementById('b_time') ? document.getElementById('b_time').value : ''
             };
             
-            // เซฟลงความจำเบราว์เซอร์
             localStorage.setItem('labUserData', JSON.stringify(userData));
-            
-            // ย้ายหน้าไปที่ index.html#services
             window.location.href = 'index.html#services';
         };
-        const translations = {
-    th: {
-        home: "หน้าแรก",
-        contact: "ติดต่อเรา",
-        booking: "นัดหมายจองคิว",
-        fastResult: "รู้ผลไว ทันใจ",
-        fastResultDesc: "ระบบวิเคราะห์รวดเร็ว พร้อมแจ้งผลทันทีเมื่อเสร็จสิ้น",
-        standard: "มาตรฐานสากล",
-        standardDesc: "เครื่องมือห้องปฏิบัติการที่ทันสมัยและแม่นยำสูง"
-    },
-
-    en: {
-        home: "Home",
-        contact: "Contact Us",
-        booking: "Book an Appointment",
-        fastResult: "Fast Results",
-        fastResultDesc: "Fast analysis with results provided promptly upon completion.",
-        standard: "International Standards",
-        standardDesc: "Modern and highly accurate laboratory equipment."
-    },
-
-    zh: {
-        home: "首页",
-        contact: "联系我们",
-        booking: "预约",
-        fastResult: "快速获得结果",
-        fastResultDesc: "快速分析，检测完成后及时提供结果。",
-        standard: "国际标准",
-        standardDesc: "采用先进且高精度的实验室设备。"
-    }
-};
-
-document.getElementById("languageSelector").addEventListener("change", function () {
-
-    const lang = this.value;
-
-    document.documentElement.lang =
-        lang === "zh" ? "zh-CN" : lang;
-
-    document.querySelectorAll("[data-lang]").forEach(element => {
-
-        const key = element.getAttribute("data-lang");
-
-        if (translations[lang][key]) {
-            element.textContent = translations[lang][key];
-        }
-
-    });
-
-});
     </script>
+    
     <script>
         lucide.createIcons();
     </script>
+
+    <!-- Google Translate (ซ่อนไว้) -->
+    <div id="google_translate_element" style="position: absolute; top: -9999px; left: -9999px; z-index: -1;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'th',
+                // ใส่เฉพาะภาษาปลายทาง ไม่ต้องใส่ th (เพราะเป็นภาษาหลักอยู่แล้ว)
+                includedLanguages: 'en,zh-CN'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script>
+    // ฟังก์ชันสำหรับเปลี่ยนภาษา
+    function changeLanguage(langCode) {
+
+        // =========================
+        // ภาษาไทย = กลับภาษาต้นฉบับ
+        // =========================
+        if (langCode === 'th') {
+
+            // ลบ cookie ของ Google Translate
+            document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+            const selectField = document.querySelector("select.goog-te-combo");
+
+            if (selectField) {
+                selectField.value = '';
+
+                selectField.dispatchEvent(
+                    new Event('change', {
+                        bubbles: true,
+                        cancelable: true
+                    })
+                );
+            }
+
+            // ถ้า Google Translate ยังไม่กลับภาษาไทย
+            // ให้รีโหลดหน้าเพื่อกลับต้นฉบับ
+            setTimeout(() => {
+                window.location.reload();
+            }, 300);
+        }
+
+        // =========================
+        // English / Chinese
+        // =========================
+        else {
+
+            const selectField = document.querySelector("select.goog-te-combo");
+
+            if (selectField) {
+                selectField.value = langCode;
+
+                selectField.dispatchEvent(
+                    new Event('change', {
+                        bubbles: true,
+                        cancelable: true
+                    })
+                );
+            }
+        }
+
+        // =========================
+        // เปลี่ยนสถานะปุ่ม
+        // Desktop + Mobile พร้อมกัน
+        // =========================
+
+        // รีเซ็ตปุ่มทั้งหมดก่อน
+        document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+
+            btn.classList.remove(
+                'bg-white',
+                'text-[#3b2c70]',
+                'shadow-sm',
+                'font-bold'
+            );
+
+            btn.classList.add(
+                'text-slate-500',
+                'font-medium'
+            );
+        });
+
+        // ทำให้ปุ่มภาษาที่เลือก Active
+        document.querySelectorAll(
+            `[data-lang-btn="${langCode}"]`
+        ).forEach(btn => {
+
+            btn.classList.remove(
+                'text-slate-500',
+                'font-medium'
+            );
+
+            btn.classList.add(
+                'bg-white',
+                'text-[#3b2c70]',
+                'shadow-sm',
+                'font-bold'
+            );
+        });
+    }
+</script>
 </body>
 </html>
