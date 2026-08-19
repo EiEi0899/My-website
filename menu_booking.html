@@ -33,12 +33,37 @@
         .drawer-slide {
             transition: transform 0.3s ease-in-out;
         }
-        /* ซ่อนแถบ Google Translate แถบบนสุด และ Tooltip */
-        .VIpgJd-Zvi9od-ORHb-OEVmcd { display: none !important; }
-        .goog-te-banner-frame { display: none !important; }
-        body { top: 0 !important; }
-        #goog-gt-tt { display: none !important; }
-        .VIpgJd-Zvi9od-l4eHX-hSRGPd { display: none !important; }
+        /* ================================
+        ซ่อน Google Translate Banner
+        ================================ */
+
+        /* ซ่อนแถบ Google Translate ด้านบน */
+        .goog-te-banner-frame,
+        iframe.goog-te-banner-frame {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+        }
+        /* ซ่อน container ของ Google Translate */
+        body > .skiptranslate {
+            display: none !important;
+        }
+        /* ป้องกัน Google Translate ดันหน้าเว็บลง */
+        body {
+    top: 0 !important;
+    position: static !important;
+        }
+        /* ซ่อน Tooltip ของ Google Translate */
+        #goog-gt-tt,
+        .goog-tooltip,
+        .goog-tooltip:hover {
+            display: none !important;
+        }
+        /* ซ่อน Highlight ของ Google Translate */
+        .goog-text-highlight {
+            background: transparent !important;
+            box-shadow: none !important;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col relative">
