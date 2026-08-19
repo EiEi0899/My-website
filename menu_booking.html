@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DPU Diagnostic Lab - ระบบนัดหมายจองคิว</title>
-    <link rel="ICON" type="image/png" href="DPU ICON Transparent.png"
+    <link rel="ICON" type="image/png" href="DPU ICON Transparent.png">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
@@ -135,22 +135,53 @@
                 </div>
             </div>
 
-            <!-- Mobile Menu Button -->
-            <button
-                onclick="toggleMobileNav()"
-                class="md:hidden text-[#3b2c70] p-2 focus:outline-none">
-                <svg class="w-8 h-8"
-                     fill="none"
-                     stroke="currentColor"
-                     viewBox="0 0 24 24">
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M4 6h16M4 12h16M4 18h16">
-                    </path>
-                </svg>
-            </button>
+            <!-- Mobile: Language + Hamburger -->
+            <div class="md:hidden flex items-center gap-2">
+
+                <!-- Language Switcher -->
+                <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200">
+                    <button
+                        onclick="changeLanguage('th')"
+                        data-lang-btn="th"
+                        class="lang-btn text-xs font-bold px-2 py-1 rounded bg-white text-[#3b2c70] shadow-sm transition-all">
+                        TH
+                    </button>
+
+                    <button
+                        onclick="changeLanguage('en')"
+                        data-lang-btn="en"
+                        class="lang-btn text-xs font-medium px-2 py-1 rounded text-slate-500 hover:text-[#3b2c70] transition-all">
+                        EN
+                    </button>
+
+                    <button
+                        onclick="changeLanguage('zh-CN')"
+                        data-lang-btn="zh-CN"
+                        class="lang-btn text-xs font-medium px-2 py-1 rounded text-slate-500 hover:text-[#3b2c70] transition-all">
+                        CN
+                    </button>
+                </div>
+
+                <!-- Hamburger Button -->
+                <button
+                    onclick="toggleMobileNav()"
+                    class="text-[#3b2c70] p-2 focus:outline-none">
+
+                    <svg
+                        class="w-8 h-8"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16">
+                        </path>
+                    </svg>
+                </button>
+            </div>
         </div>
     </nav>
 </header>
@@ -159,23 +190,7 @@
     <div id="mobileDrawer" class="fixed inset-y-0 right-0 w-[80%] max-w-xs bg-[#3b2c70] text-white z-50 transform translate-x-full transition-transform duration-300 ease-in-out p-6 shadow-2xl overflow-y-auto md:hidden">
     
         <!-- ปุ่มปิด (X) -->
-        <div class="flex justify-between mb-8">
-            <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200">
-                <button onclick="changeLanguage('th')" data-lang-btn="th"
-                    class="lang-btn text-xs font-bold px-2 py-1 rounded bg-white text-[#3b2c70] shadow-sm transition-all">
-                    TH
-                </button>
-
-                <button onclick="changeLanguage('en')" data-lang-btn="en"
-                    class="lang-btn text-xs font-medium px-2 py-1 rounded text-slate-500 hover:text-[#3b2c70] transition-all">
-                    EN
-                </button>
-
-                <button onclick="changeLanguage('zh-CN')" data-lang-btn="zh-CN"
-                    class="lang-btn text-xs font-medium px-2 py-1 rounded text-slate-500 hover:text-[#3b2c70] transition-all">
-                    CN
-                </button>
-            </div>
+        <div class="flex justify-end mb-8">
             <button onclick="toggleMobileNav()" class="text-white hover:text-purple-200 p-1">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
