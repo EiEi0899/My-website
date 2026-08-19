@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DPU Diagnostic Lab - ระบบนัดหมายจองคิว</title>
+    <link rel="ICON" type="image/png" href="DPU ICON Transparent.png"
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
@@ -41,43 +42,74 @@
     <div class="absolute inset-0 bg-gradient-to-b from-white/80 to-slate-50/95 -z-10"></div>
 
 <header class="fixed top-0 left-0 w-full z-50">
+
     <!-- Top Bar -->
     <div class="bg-[#3b2c70] text-white py-2">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-center items-center gap-6 text-sm">
                 <div class="flex items-center gap-2">
-                    <i data-lucide="clock" class="w-4 h-4 text-white"></i>
+                    <i data-lucide="clock" class="w-4 h-4"></i>
                     <span>เปิดบริการทุกวัน 08:00 - 17:00 น.</span>
-                    <i data-lucide="phone" class="w-4 h-4 text-white"></i>
-                    <a href="tel:0962736888" class="hover:text-[#6fbce9] transition-colors">
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <i data-lucide="phone" class="w-4 h-4"></i>
+                    <a href="tel:0962736888"
+                       class="hover:text-[#6fbce9] transition-colors">
                         096-273-6888
                     </a>
                 </div>
             </div>
         </div>
     </div>
+
     <!-- Navbar -->
-    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+    <nav class="w-full bg-white/90 backdrop-blur-md shadow-sm">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <!-- โลโก้ใน Navbar -->
-                <div class="flex justify-center mb-5">
-                <img src="DPU Logo Trasparent.png" onerror="this.onerror=null; this.outerHTML='<div class=\'px-4 py-2 bg-[#4c3b84] text-white font-bold rounded-xl text-base shadow-sm\'>DPU Diagnostic Lab</div>';" class="h-14 object-contain" />
-                </div>
+
+            <!-- Logo -->
+            <div class="flex items-center">
+                <img
+                    src="DPU Logo Trasparent.png"
+                    class="h-14 object-contain"
+                    alt="DPU Diagnostic Lab"
+                >
             </div>
+
+            <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-8 items-center">
-                <a href="index.html" target="_blank" class="text-slate-600 hover:text-[#3b2c70] font-medium" data-lang="home">หน้าแรก</a>
-                <a href="https://lin.ee/TIjSJf4" target="_blank" class="bg-[#3b2c70] hover:bg-purple-900 text-white px-6 py-2.5 rounded-full font-medium transition-colors" data-lang="contact">ติดต่อเรา</a>
-                <select id="languageSelector"
+                <a href="index.html"
+                   class="text-slate-600 hover:text-[#3b2c70] font-medium">
+                    หน้าแรก
+                </a>
+                <a href="https://lin.ee/TIjSJf4"
+                   target="_blank"
+                   class="bg-[#3b2c70] hover:bg-purple-900 text-white px-6 py-2.5 rounded-full font-medium transition-colors">
+                    ติดต่อเรา
+                </a>
+                <select
+                    id="languageSelector"
                     class="border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-700 outline-none">
-                        <option value="th">🇹🇭 ไทย</option>
-                        <option value="en">🇬🇧 English</option>
-                        <option value="zh">🇨🇳 中文</option>
+                    <option value="th">🇹🇭 ไทย</option>
+                    <option value="en">🇬🇧 English</option>
+                    <option value="zh">🇨🇳 中文</option>
                 </select>
             </div>
-            <button onclick="toggleMobileNav()" class="md:hidden text-[#3b2c70] p-2 focus:outline-none">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+
+            <!-- Mobile Menu Button -->
+            <button
+                onclick="toggleMobileNav()"
+                class="md:hidden text-[#3b2c70] p-2 focus:outline-none">
+                <svg class="w-8 h-8"
+                     fill="none"
+                     stroke="currentColor"
+                     viewBox="0 0 24 24">
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16">
+                    </path>
                 </svg>
             </button>
         </div>
@@ -90,7 +122,7 @@
         <!-- ปุ่มปิด (X) -->
         <div class="flex justify-between mb-8">
             <select id="languageSelector"
-                class="border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-700">
+                class="border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-700 outline-none">
                 <option value="th">🇹🇭 ไทย</option>
                 <option value="en">🇬🇧 English</option>
                 <option value="zh">🇨🇳 中文</option>
@@ -116,7 +148,7 @@
     </div>
 
     <!-- 2. ส่วนเนื้อหาหลัก (Hero Section) -->
-    <main class="flex-1 flex flex-col items-center justify-center text-center px-4 pt-28 pb-12 w-full max-w-5xl mx-auto">
+    <main class="flex-1 flex flex-col items-center justify-center text-center px-4 pt-[130px] pb-12 w-full max-w-5xl mx-auto">
         
         <!-- กล่องข้อความหลัก -->
         <div class="bg-white/90 backdrop-blur-sm p-8 md:p-12 rounded-[2rem] shadow-xl w-full border border-slate-100 relative overflow-hidden">

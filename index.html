@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DPU Diagnostic Lab</title>
+    <link rel="icon" type="image/png" href="DPU ICON Transparent.png"
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -14,25 +16,77 @@
     </style>
     <style>
     /* เอฟเฟกต์เด้งลอยออกมา (Pop-out & Float up) */
+    /* ============================= */
+    /* Animation: Modal */
+    /* ============================= */
     @keyframes floatOut {
-        0% { opacity: 0; transform: scale(0.92) translateY(24px); }
-        100% { opacity: 1; transform: scale(1) translateY(0); }
+        from {
+            opacity: 0;
+            transform: scale(0.92) translateY(24px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
     }
     .modal-float {
         animation: floatOut 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     }
-    /* สไลด์เมนูแฮมเบอร์เกอร์ */
+
+    /* ============================= */
+    /* Animation: Hero Fade Up */
+    /* ============================= */
+
+    @keyframes heroZoomIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.92) translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    /* Animation หลัก */
+    .hero-animate {
+        opacity: 0;
+        animation: heroZoomIn 1s ease-out forwards;
+    }
+
+    /* Animation Delay */
+    .hero-delay-1 {
+        animation-delay: 0.2s;
+    }
+
+    .hero-delay-2 {
+        animation-delay: 0.5s;
+    }
+
+    .hero-delay-3 {
+        animation-delay: 0.8s;
+    }
+
+    /* ============================= */
+    /* Hamburger Menu */
+    /* ============================= */
+
     .drawer-slide {
         transition: transform 0.3s ease-in-out;
     }
-        .hero-bg {
-            background-image: url('Lab 2.JPG');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
+
+    /* ============================= */
+    /* Hero Background */
+    /* ============================= */
+
+    .hero-bg {
+        background-image: url('Lab 2.JPG');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
     </style>
-    
+
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -135,30 +189,27 @@
 
         <div class="relative z-10 max-w-4xl mx-auto mt-10">
 
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight uppercase">
+            <h1 class="hero-animate hero-delay-1 text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight uppercase">
             Empowering Precision Diagnostics Through Innovation
             </h1>
 
-            <h2 class="text-xl md:text-2xl text-white mb-8 uppercase font-medium">
+            <h2 class="hero-animate hero-delay-2 text-2xl md:text-3xl lg:text-4xl text-white mb-8 uppercase font-medium whitespace-nowrap">
             Redefining the future of clinical laboratory
             </h2>
 
-            <p class="text-white/80 italic mb-10 max-w-3xl mx-auto">
+            <p class="hero-animate hero-delay-3 text-lg md:text-xl lg:text-2xl text-white/80 italic mb-10 max-w-5xl mx-auto leading-relaxed">
             Advancing healthcare through intelligent laboratory technologies, scientific excellence, and collaborative innovation—creating a modern diagnostic ecosystem for patient care, education, and future medical research.
             </p>
         </div>
 
         <!-- Scroll Down Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <a href="#expertise" class="text-white opacity-70 hover:opacity-100">
-                <div class="icon-chevron-down"></div>
-                <i data-lucide="chevron-down" class="w-8 h-8"></i>
-            </a>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
             <a
                 href="#expertise"
-                class="flex flex-col items-center text-white opacity-80 hover:opacity-100 transition-opacity duration-300"
-                aria-label="chevron-down-icon"
+                aria-label="Scroll down"
+                class="w-16 h-16 flex items-center justify-center rounded-full text-white opacity-80 hover:opacity-100 transition-all duration-300"
             >
+                <i data-lucide="chevron-down" class="w-8 h-8"></i>
             </a>
         </div>
     </section>
