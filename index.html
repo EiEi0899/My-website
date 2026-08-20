@@ -20,18 +20,12 @@
     /* Animation: Modal */
     /* ============================= */
     @keyframes floatOut {
-        from {
-            opacity: 0;
-            transform: scale(0.92) translateY(24px);
+            0% { opacity: 0; transform: scale(0.92) translateY(24px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
         }
-        to {
-            opacity: 1;
-            transform: scale(1) translateY(0);
+        .modal-float {
+            animation: floatOut 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
-    }
-    .modal-float {
-        animation: floatOut 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-    }
 
     /* ============================= */
     /* Animation: Hero Fade Up */
@@ -80,7 +74,7 @@
         /* ============================= */
 
         .hero-bg {
-            background-image: url('Lab 2.JPG');
+            background-image: url('Front DPU LAB.JPG');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -267,7 +261,7 @@
     <section
         id="home"
         class="relative min-h-screen flex items-center justify-center px-4 text-center bg-cover bg-center bg-no-repeat overflow-hidden"
-        style="background-image: url('Lab 2.JPG');"
+        style="background-image: url('Front\ DPU\ LAB.JPG');"
     >
     
         <!-- Gradient Overlay -->
@@ -292,13 +286,13 @@
         </div>
 
         <!-- Scroll Down Indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2">
             <a
                 href="#expertise"
                 aria-label="Scroll down"
                 class="w-16 h-16 flex items-center justify-center rounded-full text-white opacity-80 hover:opacity-100 transition-all duration-300"
             >
-                <i data-lucide="chevron-down" class="w-8 h-8"></i>
+                <i data-lucide="chevron-down" class="w-8 h-8 animate-bounce block"></i>
             </a>
         </div>
     </section>
@@ -2130,7 +2124,7 @@
                 </li>
             </ul>
         </div>
-
+        </div>
             <div class="text-center mt-12">
                 <p class="text-sm text-slate-500">* ราคาดังกล่าวเป็นอัตราค่าบริการอ้างอิง กรุณาสอบถามรายละเอียดเพิ่มเติม ณ จุดบริการ</p>
             </div>
@@ -2140,7 +2134,7 @@
     <!-- Footer -->
     <footer class="bg-[#3b2c70] text-white py-12 text-center">
         <p class="mb-4 font-semibold text-lg">DPU Diagnostic Lab</p>
-        <p class="text-sm text-purple-200 mb-6">313-2 Prachachuen Road, Thung Song Hong Subdistrict, Lak Si District, Bangkok 10210, Thailand</p>
+        <p class="text-sm text-purple-200 mb-6">313/2 Prachachuen Road, Thung Song Hong Subdistrict, Lak Si District, Bangkok 10210, Thailand</p>
         <a href="https://lin.ee/TIjSJf4" target="_blank" class="inline-block border border-white/50 hover:bg-white/10 text-white px-6 py-2 rounded-full transition-colors text-sm">
             LINE Official: @dpudiagnosticlab
         </a>
@@ -2850,7 +2844,7 @@ function changeLanguage(langCode) {
     </div>
     <!-- 🟢 กล่องป๊อปอัปแจ้งเตือนสำเร็จ (Success Modal) -->
     <div id="successModal" class="fixed inset-0 bg-slate-900/40 z-[200] hidden flex items-center justify-center backdrop-blur-sm px-4">
-        <div class="bg-white rounded-2xl p-6 w-full max-w-sm shadow-xl transform transition-all text-center">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-sm shadow-xl modal-float transform transition-all text-center">
         
             <!-- ไอคอนเครื่องหมายถูก (สีเขียว) -->
             <div class="flex items-center justify-center w-16 h-16 mx-auto bg-green-100 rounded-full mb-4">
