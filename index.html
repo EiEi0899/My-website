@@ -67,24 +67,55 @@
         animation-delay: 0.8s;
     }
 
-    /* ============================= */
-    /* Hamburger Menu */
-    /* ============================= */
+        /* ============================= */
+        /* Hamburger Menu */
+        /* ============================= */
 
-    .drawer-slide {
-        transition: transform 0.3s ease-in-out;
-    }
+        .drawer-slide {
+            transition: transform 0.3s ease-in-out;
+        }
 
-    /* ============================= */
-    /* Hero Background */
-    /* ============================= */
+        /* ============================= */
+        /* Hero Background */
+        /* ============================= */
 
-    .hero-bg {
-        background-image: url('Lab 2.JPG');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-    }
+        .hero-bg {
+            background-image: url('Lab 2.JPG');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        /* ================================
+        ซ่อน Google Translate Banner
+        ================================ */
+
+        /* ซ่อนแถบ Google Translate ด้านบน */
+        .goog-te-banner-frame,
+        iframe.goog-te-banner-frame {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+        }
+        /* ซ่อน container ของ Google Translate */
+        body > .skiptranslate {
+            display: none !important;
+        }
+        /* ป้องกัน Google Translate ดันหน้าเว็บลง */
+        body {
+    top: 0 !important;
+    position: static !important;
+        }
+        /* ซ่อน Tooltip ของ Google Translate */
+        #goog-gt-tt,
+        .goog-tooltip,
+        .goog-tooltip:hover {
+            display: none !important;
+        }
+        /* ซ่อน Highlight ของ Google Translate */
+        .goog-text-highlight {
+            background: transparent !important;
+            box-shadow: none !important;
+        }
     </style>
 
     <!-- Lucide Icons -->
@@ -113,7 +144,7 @@
 </div>
 
 <!-- Navigation Bar -->
-<nav class="w-full bg-white/90 backdrop-blur-md shadow-sm">
+    <nav class="w-full bg-white/90 backdrop-blur-md shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20 items-center">
             <div class="flex items-center">
@@ -127,17 +158,72 @@
                 <a href="#services" class="text-slate-600 hover:text-[#3b2c70] font-medium">อัตราค่าบริการ</a>
                 <a href="menu_booking.html" target="_blank" class="text-slate-600 hover:text-[#3b2c70] font-medium">นัดหมายจองคิว</a>
                 <a href="https://lin.ee/TIjSJf4" target="_blank" class="bg-[#3b2c70] hover:bg-purple-900 text-white px-6 py-2.5 rounded-full font-medium transition-colors">ติดต่อเรา</a>
+                <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200">
+                    <button onclick="changeLanguage('th')" data-lang-btn="th"
+                        class="lang-btn text-xs font-bold px-2 py-1 rounded bg-white text-[#3b2c70] shadow-sm transition-all">
+                        TH
+                    </button>
+
+                    <button onclick="changeLanguage('en')" data-lang-btn="en"
+                        class="lang-btn text-xs font-medium px-2 py-1 rounded text-slate-500 hover:text-[#3b2c70] transition-all">
+                        EN
+                    </button>
+
+                    <button onclick="changeLanguage('zh-CN')" data-lang-btn="zh-CN"
+                        class="lang-btn text-xs font-medium px-2 py-1 rounded text-slate-500 hover:text-[#3b2c70] transition-all">
+                        CN
+                    </button>
+                </div>
             </div>
 
-            <!-- 🍔 ปุ่มเมนูแฮมเบอร์เกอร์ (แสดงเฉพาะบนมือถือ) -->
-            <button onclick="toggleMobileNav()" class="md:hidden text-[#3b2c70] p-2 focus:outline-none">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
+            <!-- Mobile: Language + Hamburger -->
+            <div class="md:hidden flex items-center gap-2">
+
+                <!-- Language Switcher -->
+                <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200">
+                    <button
+                        onclick="changeLanguage('th')"
+                        data-lang-btn="th"
+                        class="lang-btn text-xs font-bold px-2 py-1 rounded bg-white text-[#3b2c70] shadow-sm transition-all">
+                        TH
+                    </button>
+
+                    <button
+                        onclick="changeLanguage('en')"
+                        data-lang-btn="en"
+                        class="lang-btn text-xs font-medium px-2 py-1 rounded text-slate-500 hover:text-[#3b2c70] transition-all">
+                        EN
+                    </button>
+
+                    <button
+                        onclick="changeLanguage('zh-CN')"
+                        data-lang-btn="zh-CN"
+                        class="lang-btn text-xs font-medium px-2 py-1 rounded text-slate-500 hover:text-[#3b2c70] transition-all">
+                        CN
+                    </button>
+                </div>
+
+                <!-- Hamburger Button -->
+                <button
+                    onclick="toggleMobileNav()"
+                    class="text-[#3b2c70] p-2 focus:outline-none">
+                    <svg
+                        class="w-8 h-8"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16">
+                        </path>
+                    </svg>
+                </button>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 </header>
 
 <!-- 📱 เมนูด้านข้างสไลด์สำหรับมือถือ -->
@@ -2630,6 +2716,112 @@
 <script>
     lucide.createIcons();
 </script>
+<!-- Google Translate (ซ่อนไว้) -->
+<div id="google_translate_element" style="position: absolute; top: -9999px; left: -9999px; z-index: -1;"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'th',
+            // ใส่เฉพาะภาษาปลายทาง ไม่ต้องใส่ th (เพราะเป็นภาษาหลักอยู่แล้ว)
+            includedLanguages: 'en,zh-CN'
+        }, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+// ฟังก์ชันสำหรับเปลี่ยนภาษา
+function changeLanguage(langCode) {
+
+    // =========================
+    // ภาษาไทย = กลับภาษาต้นฉบับ
+    // =========================
+    if (langCode === 'th') {
+
+        // ลบ cookie ของ Google Translate
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+        const selectField = document.querySelector("select.goog-te-combo");
+
+        if (selectField) {
+            selectField.value = '';
+
+            selectField.dispatchEvent(
+                new Event('change', {
+                    bubbles: true,
+                    cancelable: true
+                })
+            );
+        }
+
+        // ถ้า Google Translate ยังไม่กลับภาษาไทย
+        // ให้รีโหลดหน้าเพื่อกลับต้นฉบับ
+        setTimeout(() => {
+            window.location.reload();
+        }, 300);
+    }
+
+    // =========================
+    // English / Chinese
+    // =========================
+    else {
+
+        const selectField = document.querySelector("select.goog-te-combo");
+
+        if (selectField) {
+            selectField.value = langCode;
+
+            selectField.dispatchEvent(
+                new Event('change', {
+                    bubbles: true,
+                    cancelable: true
+                })
+            );
+        }
+    }
+
+    // =========================
+    // เปลี่ยนสถานะปุ่ม
+    // Desktop + Mobile พร้อมกัน
+    // =========================
+
+    // รีเซ็ตปุ่มทั้งหมดก่อน
+    document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+
+        btn.classList.remove(
+            'bg-white',
+            'text-[#3b2c70]',
+            'shadow-sm',
+            'font-bold'
+        );
+
+        btn.classList.add(
+            'text-slate-500',
+            'font-medium'
+        );
+    });
+
+        // ทำให้ปุ่มภาษาที่เลือก Active
+        document.querySelectorAll(
+            `[data-lang-btn="${langCode}"]`
+        ).forEach(btn => {
+
+            btn.classList.remove(
+                'text-slate-500',
+                'font-medium'
+            );
+
+            btn.classList.add(
+                'bg-white',
+                'text-[#3b2c70]',
+                'shadow-sm',
+                'font-bold'
+            );
+        });
+    }
+</script>
+
     <!-- 🔴 กล่องป๊อปอัปยืนยันการลบทั้งหมด (Custom Modal) -->
     <div id="customConfirmModal" class="fixed inset-0 bg-slate-900/40 z-50 hidden flex items-center justify-center backdrop-blur-sm px-4">
         <div class="bg-white rounded-2xl p-6 w-full max-w-sm shadow-xl transform transition-all">
