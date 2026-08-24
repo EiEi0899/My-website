@@ -15,10 +15,8 @@
         }
     </style>
     <style>
-    /* เอฟเฟกต์เด้งลอยออกมา (Pop-out & Float up) */
-    /* ============================= */
+
     /* Animation: Modal */
-    /* ============================= */
     @keyframes floatOut {
             0% { opacity: 0; transform: scale(0.92) translateY(24px); }
             100% { opacity: 1; transform: scale(1) translateY(0); }
@@ -27,10 +25,7 @@
             animation: floatOut 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
-    /* ============================= */
     /* Animation: Hero Fade Up */
-    /* ============================= */
-
     @keyframes heroZoomIn {
         0% {
             opacity: 0;
@@ -61,27 +56,18 @@
         animation-delay: 0.8s;
     }
 
-        /* ============================= */
         /* Hamburger Menu */
-        /* ============================= */
-
         .drawer-slide {
             transition: transform 0.3s ease-in-out;
         }
 
-        /* ============================= */
         /* Hero Background */
-        /* ============================= */
-
         .hero-bg {
             background-image: url('Front DPU LAB 16-9 12.25.42.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
-        /* ================================
-        ซ่อน Google Translate Banner
-        ================================ */
 
         /* ซ่อนแถบ Google Translate ด้านบน */
         .goog-te-banner-frame,
@@ -96,8 +82,8 @@
         }
         /* ป้องกัน Google Translate ดันหน้าเว็บลง */
         body {
-    top: 0 !important;
-    position: static !important;
+            top: 0 !important;
+            position: static !important;
         }
         /* ซ่อน Tooltip ของ Google Translate */
         #goog-gt-tt,
@@ -2255,7 +2241,7 @@
         </button>
     </div>
     
-    <!-- รายการที่เลือก (จะถูกแทรกตรงนี้ผ่าน JavaScript) -->
+    <!-- รายการที่เลือก -->
     <div class="p-6 flex-1 overflow-y-auto bg-slate-50">
         <ul id="cartItems" class="space-y-3">
             <li class="text-slate-400 text-center py-10">ยังไม่มีรายการในตะกร้า<br><span class="text-sm">คลิก "เพิ่ม" ที่รายการตรวจเพื่อคำนวณราคา</span></li>
@@ -2277,7 +2263,7 @@
         นัดหมายจองคิว
     </button>
 
-    <!-- 🟢 ปุ่มส่ง Line (แบบไม่มีไอคอน) -->
+    <!-- 🟢 ปุ่มส่ง Line -->
     <button onclick="sendToLine()" class="w-full bg-[#06C755] hover:bg-[#05b34c] text-white py-3.5 rounded-xl font-bold text-lg transition-colors flex justify-center items-center shadow-lg mt-2">
         สอบถามข้อมูลเพิ่มเติมทาง LINE
     </button>
