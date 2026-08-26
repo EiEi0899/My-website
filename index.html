@@ -2695,9 +2695,8 @@
                 }
             });
         };
-    // ----------------------------------------------------
-    // ฟังก์ชันสำหรับตรวจจับการกดปุ่มบนคีย์บอร์ด
-    // ----------------------------------------------------
+
+    // ฟังก์ชันสำหรับตรวจจับการกดปุ่มบนคีย์บอร์ด //
     document.addEventListener('keydown', function(event) {
         // เช็คว่าปุ่มที่กดคือปุ่ม "Escape" (ESC) หรือไม่
         if (event.key === 'Escape') {
@@ -2800,9 +2799,7 @@
 // ฟังก์ชันสำหรับเปลี่ยนภาษา
 function changeLanguage(langCode) {
 
-    // =========================
-    // ภาษาไทย = กลับภาษาต้นฉบับ
-    // =========================
+    // ภาษาไทย = กลับภาษาต้นฉบับ //
     if (langCode === 'th') {
 
         // ลบ cookie ของ Google Translate
@@ -2829,9 +2826,7 @@ function changeLanguage(langCode) {
         }, 300);
     }
 
-    // =========================
-    // English / Chinese
-    // =========================
+    // English / Chinese //
     else {
 
         const selectField = document.querySelector("select.goog-te-combo");
@@ -2848,12 +2843,9 @@ function changeLanguage(langCode) {
         }
     }
 
-    // =========================
     // เปลี่ยนสถานะปุ่ม
     // Desktop + Mobile พร้อมกัน
-    // =========================
 
-    // รีเซ็ตปุ่มทั้งหมดก่อน
     document.querySelectorAll('[data-lang-btn]').forEach(btn => {
 
         btn.classList.remove(
@@ -2961,7 +2953,7 @@ function changeLanguage(langCode) {
                 <input type="text" id="b_name" required class="w-full border border-slate-300 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#3b2c70] focus:ring-1 focus:ring-[#3b2c70]">
             </div>
             
-            <!-- 2. เบอร์โทรศัพท์ (บังคับแป้นพิมพ์ตัวเลข) -->
+            <!-- 2. เบอร์โทรศัพท์ -->
             <div>
                 <label class="block text-sm font-semibold text-slate-700 mb-1">เบอร์โทรศัพท์</label>
                 <input type="tel" id="b_phone" pattern="[0-9]*" inputmode="tel" required class="w-full border border-slate-300 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#3b2c70] focus:ring-1 focus:ring-[#3b2c70]">
