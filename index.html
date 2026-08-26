@@ -14,8 +14,8 @@
             font-family: 'Prompt', sans-serif;
         }
     </style>
-    <style>
 
+    <style>
     /* Animation: Modal */
     @keyframes floatOut {
             0% { opacity: 0; transform: scale(0.92) translateY(24px); }
@@ -96,6 +96,100 @@
             background: transparent !important;
             box-shadow: none !important;
         }
+    </style>
+
+    <style>
+    /* PROMOTION SLIDER */
+    .promotion-section {
+        width: 100%;
+        padding: 20px 0 30px;
+        overflow: hidden;
+    }
+
+    .promotion-track {
+        display: flex;
+        transition: transform 0.6s ease-in-out;
+        will-change: transform;
+    }
+
+    .promotion-slider {
+        width: min(70%, 900px);
+        margin: auto;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .promotion-slide {
+        min-width: 100%;
+        height: 300px;
+        overflow: hidden;
+        border-radius: 20px;
+        background: #f5f5f5;
+    }
+
+    .promotion-slide img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        border-radius: 28px;
+        object-fit: contain;
+
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    /* DOTS */
+    .promotion-dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px; /* ระยะห่างระหว่าง Dot */
+        margin-top: 18px;
+    }
+
+    .dot {
+        width: 10px; /* ลดขนาด Dot */
+        height: 10px;
+        border: none;
+        border-radius: 50%;
+        background: #d9d9d9;
+        cursor: pointer;
+        padding: 0;
+        transition: all 0.3s ease;
+    }
+
+    .dot.active {
+        background: #bca4db;
+        width: 14px; /* Dot ที่เลือกอยู่ */
+        height: 14px;
+        box-shadow: none;
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+
+        .promotion-slider {
+            width: 94%;
+        }
+
+        .promotion-slide img {
+            border-radius: 18px;
+        }
+
+        .promotion-dots {
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+        }
+
+        .dot.active {
+            width: 15px;
+            height: 15px;
+        }
+    }
     </style>
 
     <!-- Lucide Icons -->
@@ -391,6 +485,35 @@
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotion Slider -->
+    <section class="promotion-section">
+        <div class="promotion-slider" id="promotionSlider">
+            <div class="promotion-track" id="promotionTrack">
+                <!-- โปรโมชั่น 1 -->
+                <div class="promotion-slide">
+                    <img src="DPU LAB ICON Transparent.PNG" alt="โปรโมชั่น 1">
+                </div>
+
+                <!-- โปรโมชั่น 2 -->
+                <div class="promotion-slide">
+                    <img src="DPU LAB ICON Transparent.PNG" alt="โปรโมชั่น 2">
+                </div>
+
+                <!-- โปรโมชั่น 3 -->
+                <div class="promotion-slide">
+                    <img src="DPU LAB ICON Transparent.PNG" alt="โปรโมชั่น 3">
+                </div>
+            </div>
+
+            <!-- จุดบอกตำแหน่ง -->
+            <div class="promotion-dots" id="promotionDots">
+                <button class="dot active" aria-label="โปรโมชั่น 1"></button>
+                <button class="dot" aria-label="โปรโมชั่น 2"></button>
+                <button class="dot" aria-label="โปรโมชั่น 3"></button>
             </div>
         </div>
     </section>
@@ -2879,6 +3002,95 @@ function changeLanguage(langCode) {
             );
         });
     }
+</script>
+
+<script>
+    // Slide Promotion //
+document.addEventListener("DOMContentLoaded", function () {
+
+    const track = document.getElementById("promotionTrack");
+    const slides = document.querySelectorAll(".promotion-slide");
+    const dots = document.querySelectorAll(".dot");
+    const slider = document.getElementById("promotionSlider");
+
+    let currentIndex = 0;
+    let autoSlide;
+
+    const totalSlides = slides.length;
+
+    // เปลี่ยนสไลด์
+    function showSlide(index) {
+
+        // วนกลับไปสไลด์แรก
+        if (index >= totalSlides) {
+            currentIndex = 0;
+        }
+
+        // วนกลับไปสไลด์สุดท้าย
+        else if (index < 0) {
+            currentIndex = totalSlides - 1;
+        }
+
+        else {
+            currentIndex = index;
+        }
+
+        // เลื่อนรูป
+        track.style.transform =
+            `translateX(-${currentIndex * 100}%)`;
+
+        // เปลี่ยน Dot
+        dots.forEach((dot, i) => {
+            dot.classList.toggle(
+                "active",
+                i === currentIndex
+            );
+        });
+    }
+
+    // สไลด์ถัดไป
+    function nextSlide() {
+        showSlide(currentIndex + 1);
+    }
+
+    // เริ่ม Auto Slide
+    function startAutoSlide() {
+
+        autoSlide = setInterval(() => {
+            nextSlide();
+        }, 4000);
+
+    }
+
+    // หยุด Auto Slide
+    function stopAutoSlide() {
+        clearInterval(autoSlide);
+    }
+
+    // กด Dot เพื่อเปลี่ยนรูป
+    dots.forEach((dot, index) => {
+
+        dot.addEventListener("click", function () {
+
+            stopAutoSlide();
+            showSlide(index);
+            startAutoSlide();
+
+        });
+
+    });
+
+    // หยุดเลื่อนเมื่อเอาเมาส์วาง
+    slider.addEventListener("mouseenter", stopAutoSlide);
+
+    // กลับมาเลื่อนเมื่อเอาเมาส์ออก
+    slider.addEventListener("mouseleave", startAutoSlide);
+
+    // เริ่มทำงาน
+    showSlide(0);
+    startAutoSlide();
+
+});
 </script>
 
     <!-- 🔴 กล่องป๊อปอัปยืนยันการลบทั้งหมด (Custom Modal) -->
